@@ -13,6 +13,7 @@ import { SubmitIssueComponent } from './submitIssue/submitIssue.component';
 import { HomeComponent } from './home/home.component';
 import {ArticleComponent} from './articles/article/article.component';
 import { EditorComponent } from './editor/editor.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [	
@@ -26,7 +27,8 @@ import { EditorComponent } from './editor/editor.component';
       SubmitIssueComponent,
       HomeComponent,
       ArticleComponent,
-      EditorComponent
+      EditorComponent,
+      ProfileComponent
    ],
   imports: [
     BrowserModule,
