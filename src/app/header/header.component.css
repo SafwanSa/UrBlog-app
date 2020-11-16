@@ -1,0 +1,56 @@
+/* Header styling */
+header {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  justify-items: center;
+  padding: 1rem;
+  border-bottom: 2px solid rgb(233, 232, 232);
+}
+header > .left-side {
+  display: flex;
+  justify-items: center;
+}
+
+header > .right-side {
+  display: flex;
+  justify-items: center;
+}
+
+header > .left-side a,
+.right-side a {
+  margin: 0 1rem;
+  font-size: small;
+  color: gray;
+  text-decoration: none;
+}
+
+#blog-name {
+  color: black;
+  font-weight: 600;
+  font-size: large;
+}
+
+#blog-name span {
+  color: rgb(7, 111, 209);
+}
+
+#login,
+#register {
+  font-weight: 600;
+  padding: 0.4rem 0.8rem;
+}
+
+#register {
+  background: rgb(85, 230, 128);
+  color: white;
+  border-radius: 3px;
+}
+
+body {
+  height: 100vh;
+}
+
+.nav-option:focus {
+  color: rgb(7, 111, 209);
+}
