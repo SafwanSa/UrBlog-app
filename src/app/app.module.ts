@@ -12,9 +12,10 @@ import { IssuesComponent } from './issues/issues.component';
 import { SubmitIssueComponent } from './submitIssue/submitIssue.component';
 import { HomeComponent } from './home/home.component';
 import {ArticleComponent} from './articles/article/article.component';
+import { EditorComponent } from './editor/editor.component';
 
 @NgModule({
-  declarations: [								
+  declarations: [	
     AppComponent,
       ArticlesComponent,
       HeaderComponent,
@@ -24,7 +25,8 @@ import {ArticleComponent} from './articles/article/article.component';
       IssuesComponent,
       SubmitIssueComponent,
       HomeComponent,
-      ArticleComponent
+      ArticleComponent,
+      EditorComponent
    ],
   imports: [
     BrowserModule,
