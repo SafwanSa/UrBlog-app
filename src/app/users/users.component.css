@@ -1,0 +1,58 @@
+.root-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  justify-content: center;
+}
+
+.config-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center;
+  text-align: center;
+  height: 20%;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.config-container a {
+  margin: 1rem;
+  text-decoration: none;
+  color: gray;
+  font-size: small;
+}
+
+.config-container form {
+  margin: 0 auto;
+  padding-top: 1.5rem;
+  width: 100%;
+}
+
+.config-container form input {
+  padding: 0.2rem 0.6rem;
+  width: 80%;
+}
+
+.config-container form button {
+  padding: 0.2rem 0.6rem;
+  background: rgb(7, 111, 209);
+  color: white;
+}
+
+.config-container > #title {
+  font-size: 30px;
+  font-weight: lighter;
+  color: rgb(100, 100, 100);
+}
+
+.users-container {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  margin: 0 auto;
+  height: 80%;
+  width: 50%;
+  margin-top: 2rem;
+}

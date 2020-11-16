@@ -1,0 +1,47 @@
+a {
+  display: flex;
+  justify-content: space-between;
+  justify-items: center;
+  margin: 1rem 0rem;
+}
+
+.block-btn {
+  background: rgb(223, 66, 66);
+  color: white;
+  padding: 1rem;
+}
+
+.unblock-btn {
+  background: rgb(85, 230, 128);
+  color: white;
+  padding: 1rem;
+}
+
+.myCard {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+
+.myCard > div > #name {
+  font-size: 24px;
+  color: rgb(71, 71, 71);
+}
+
+.myCard > div > #email {
+  color: rgb(71, 71, 71);
+}
+
+.active {
+  color: rgb(85, 230, 128);
+}
+
+.blocked {
+  color: rgb(223, 66, 66);
+}
+
+.myCard > div {
+  margin: 0 1rem;
+}

@@ -15,6 +15,7 @@ import {ArticleComponent} from './articles/article/article.component';
 import { EditorComponent } from './editor/editor.component';
 import { ProfileComponent } from './profile/profile.component';
 import {IssueCardComponent} from './issues/issueCard/issueCard.component';
+import {UserCardComponent} from './users/userCard/userCard.component';
 
 @NgModule({
   declarations: [	
@@ -30,7 +31,8 @@ import {IssueCardComponent} from './issues/issueCard/issueCard.component';
       ArticleComponent,
       EditorComponent,
       ProfileComponent,
-      IssueCardComponent
+      IssueCardComponent,
+      UserCardComponent
    ],
   imports: [
     BrowserModule,

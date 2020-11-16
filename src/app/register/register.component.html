@@ -1,3 +1,32 @@
-<p>
-  register works!
-</p>
+<div class="root-container">
+  <form action="">
+    <p id="title">Create an Account</p>
+
+    <div class="name">
+      <input id="fname" type="text" placeholder="First Name" required />
+      <input id="lname" type="text" placeholder="Last Name" required />
+    </div>
+
+    <div class="email">
+      <input id="email" type="email" placeholder="Email" required />
+      <input class="gender" type="radio" name="gender" value="male" checked />
+      <label for="">Male</label>
+      <input class="gender" type="radio" name="gender" value="female" />
+      <label for="">Female</label>
+    </div>
+
+    <div class="password">
+      <input id="password" type="password" placeholder="Password" required />
+      <input
+        id="confirm-password"
+        type="password"
+        placeholder="Confirm Password"
+        required
+      />
+    </div>
+
+    <p>Already have an account? <a routerLink="/login">Login</a></p>
+
+    <button id="register-btn">Register</button>
+  </form>
+</div>
