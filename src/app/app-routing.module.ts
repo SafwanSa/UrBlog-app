@@ -8,7 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { SubmitIssueComponent } from './submitIssue/submitIssue.component';
 import { UsersComponent } from './users/users.component';
-import {ProfileComponent} from './profile/profile.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   {path: 'articles', component: ArticlesComponent},
