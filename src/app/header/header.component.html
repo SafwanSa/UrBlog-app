@@ -2,16 +2,22 @@
   <div class="left-side">
     <a id="blog-name" href="../index.html">Ur<span>Blog</span></a>
     <nav>
-      <a class="nav-option" href="../articles/articles.html">Articles</a>
-      <a class="nav-option" href="../issues/issues.html">Issues</a>
-      <a class="nav-option" href="../submitIssue/submitIssue.html"
+      <a class="nav-option" routerLink="/articles" routerLinkActive="active"
+        >Articles</a
+      >
+      <a class="nav-option" routerLink="/issues" routerLinkActive="active"
+        >Issues</a
+      >
+      <a class="nav-option" routerLink="/submitIssue" routerLinkActive="active"
         >Submit an Issue</a
       >
-      <a class="nav-option" href="../users/users.html">Users</a>
+      <a class="nav-option" routerLink="/users" routerLinkActive="active"
+        >Users</a
+      >
     </nav>
   </div>
   <div class="right-side">
-    <a id="login" href="../login/login.html">Login</a>
-    <a id="register" href="../register/register.html">Register</a>
+    <a id="login" routerLink="/login">Login</a>
+    <a id="register" routerLink="/register">Register</a>
   </div>
 </header>

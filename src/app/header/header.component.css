@@ -17,8 +17,14 @@ header > .right-side {
   justify-items: center;
 }
 
-header > .left-side a,
-.right-side a {
+header > .right-side a {
+  margin: 0 1rem;
+  font-size: small;
+  color: gray;
+  text-decoration: none;
+}
+
+.nav-option {
   margin: 0 1rem;
   font-size: small;
   color: gray;
@@ -47,10 +53,6 @@ header > .left-side a,
   border-radius: 3px;
 }
 
-body {
-  height: 100vh;
-}
-
-.nav-option:focus {
+.active {
   color: rgb(7, 111, 209);
 }
