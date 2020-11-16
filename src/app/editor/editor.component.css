@@ -1,0 +1,47 @@
+.root-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+}
+
+.action {
+  text-align: right;
+  margin-top: 1rem;
+}
+
+.action button {
+  padding: 0.3rem 1rem;
+  border-radius: 5px;
+  font-size: large;
+}
+
+#add-btn {
+  background: rgb(7, 111, 209);
+  color: white;
+}
+
+#discard-btn {
+  background: rgb(223, 66, 66);
+  color: white;
+}
+
+.article-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.article-info input {
+  margin: 1rem 0rem;
+  padding: 0.5rem 0rem;
+  padding-left: 0.5rem;
+  font-size: medium;
+}
+
+.article-info #description {
+  margin-bottom: 2rem;
+}
+
+.editor {
+  height: 60%;
+}
