@@ -14,6 +14,7 @@ import { HomeComponent } from './home/home.component';
 import {ArticleComponent} from './articles/article/article.component';
 import { EditorComponent } from './editor/editor.component';
 import { ProfileComponent } from './profile/profile.component';
+import {IssueCardComponent} from './issues/issueCard/issueCard.component';
 
 @NgModule({
   declarations: [	
@@ -28,7 +29,8 @@ import { ProfileComponent } from './profile/profile.component';
       HomeComponent,
       ArticleComponent,
       EditorComponent,
-      ProfileComponent
+      ProfileComponent,
+      IssueCardComponent
    ],
   imports: [
     BrowserModule,
