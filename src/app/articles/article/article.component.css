@@ -1,0 +1,29 @@
+.myCard {
+  display: flex;
+  border: 1px solid gray;
+  border-radius: 5px;
+  margin: 1rem 0rem;
+}
+
+.myCard .publish-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.myCard > div > #title {
+  font-size: 24px;
+  color: rgb(7, 111, 209);
+}
+
+.myCard > div {
+  margin: 0 1rem;
+}
+
+.publish-info {
+  font-size: smaller;
+  color: rgb(197, 196, 196);
+}
+
+.myCard > div > #description {
+  color: gray;
+}
