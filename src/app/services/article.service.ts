@@ -12,7 +12,6 @@ export class ArticleService {
 articles: Article[];
 
 constructor(private db: AngularFirestore) {
-
   this.articles = [];
 }
 
