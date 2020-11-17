@@ -1,6 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { QuillModule } from 'ngx-quill';
+// Firebase modules
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireStorage, AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/auth';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,8 +23,12 @@ import { ProfileComponent } from './profile/profile.component';
 import {IssueCardComponent} from './issues/issueCard/issueCard.component';
 import {UserCardComponent} from './users/userCard/userCard.component';
 
+// Get firebase credentials
+import {firebaseConfig} from './config/firebase.config';
+const config = firebaseConfig;
+
 @NgModule({
-  declarations: [	
+  declarations: [
     AppComponent,
       ArticlesComponent,
       HeaderComponent,
@@ -38,7 +47,12 @@ import {UserCardComponent} from './users/userCard/userCard.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    QuillModule.forRoot()
+    QuillModule.forRoot(),
+    // 3. Initialize
+    AngularFireModule.initializeApp(config),
+    AngularFirestoreModule, // firestore
+    AngularFireAuthModule, // auth
+    AngularFireStorageModule // storage
   ],
   providers: [],
   bootstrap: [AppComponent]
