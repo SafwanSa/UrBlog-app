@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Article } from '../models/article.model';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +11,9 @@ articles: Article[];
 
 constructor(private db: AngularFirestore) {
   this.articles = [];
+
+  this.getArticles('ss')
+  .subscribe(articles => this.articles = articles);
 }
 
 
@@ -35,4 +36,15 @@ addDummyData(db) {
     console.log('Error');
   });
 }
+
+
+getArticles(uid: string) {
+  return this.db.collection<Article>('articles', (ref) =>
+    ref.where('bloggerUid', '==', uid)
+  ).valueChanges();
+}
+
+
+
+
 }
