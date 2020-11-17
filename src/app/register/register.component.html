@@ -1,24 +1,61 @@
 <div class="root-container">
-  <form action="">
+  <form action="" [formGroup]="form" (ngSubmit)="onSubmit()">
     <p id="title">Create an Account</p>
 
     <div class="name">
-      <input id="fname" type="text" placeholder="First Name" required />
-      <input id="lname" type="text" placeholder="Last Name" required />
+      <input
+        id="fname"
+        placeholder="First Name"
+        formControlName="firstName"
+        type="text"
+        required
+        autocomplete="off"
+        required
+      />
+      <input
+        id="lname"
+        placeholder="Last Name"
+        formControlName="lastName"
+        type="text"
+        required
+        autocomplete="off"
+        required
+      />
     </div>
 
     <div class="email">
-      <input id="email" type="email" placeholder="Email" required />
+      <input
+        id="email"
+        formControlName="email"
+        type="email"
+        placeholder="Email"
+        autocomplete="off"
+        required
+      />
+
       <input class="gender" type="radio" name="gender" value="male" checked />
       <label for="">Male</label>
-      <input class="gender" type="radio" name="gender" value="female" />
+      <input
+        class="gender"
+        formControlName="gender"
+        type="radio"
+        name="gender"
+        value="female"
+      />
       <label for="">Female</label>
     </div>
 
     <div class="password">
-      <input id="password" type="password" placeholder="Password" required />
+      <input
+        id="password"
+        formControlName="password"
+        type="password"
+        placeholder="Password"
+        required
+      />
       <input
         id="confirm-password"
+        formControlName="confirmPassword"
         type="password"
         placeholder="Confirm Password"
         required
@@ -27,6 +64,57 @@
 
     <p>Already have an account? <a routerLink="/login">Login</a></p>
 
-    <button id="register-btn">Register</button>
+    <button id="register-btn" [disabled]="!passwordDoesMatch" type="submit">
+      Register
+    </button>
+
+    <div
+      *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
+      class="alert alert-danger"
+    >
+      <div *ngIf="firstName.errors.required">First name is required.</div>
+    </div>
+
+    <div
+      *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)"
+      class="alert alert-danger"
+    >
+      <div *ngIf="lastName.errors.required">Last name is required.</div>
+    </div>
+
+    <div
+      *ngIf="email.invalid && (email.dirty || email.touched)"
+      class="alert alert-danger"
+    >
+      <div *ngIf="email.errors.required">Email is required.</div>
+      <div *ngIf="email.errors.email">Enter a valid email.</div>
+    </div>
+
+    <div
+      *ngIf="password.invalid && (password.dirty || password.touched)"
+      class="alert alert-danger"
+    >
+      <div *ngIf="password.errors.required">Password is required.</div>
+      <div *ngIf="password.errors.minlength">Password must be at least 6.</div>
+    </div>
+
+    <div
+      *ngIf="
+        confirmPassword.invalid &&
+        (confirmPassword.dirty || confirmPassword.touched)
+      "
+      class="alert alert-danger"
+    >
+      <div *ngIf="confirmPassword.errors.required">
+        Confirm Password is required.
+      </div>
+      <div *ngIf="!passwordDoesMatch">
+        Confirm password does not match the password.
+      </div>
+    </div>
+
+    <div *ngIf="serverMessage !== ''" class="alert alert-danger">
+      <div>{{ serverMessage }}</div>
+    </div>
   </form>
 </div>

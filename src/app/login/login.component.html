@@ -1,17 +1,51 @@
 <div class="root-container">
-  <form action="">
+  <form action="" [formGroup]="form" (ngSubmit)="onSubmit()">
     <p id="title">Welcome</p>
 
     <div class="email">
-      <input id="email" type="email" placeholder="Email" required />
+      <input
+        id="email"
+        formControlName="email"
+        type="email"
+        placeholder="Email"
+        required
+        autocomplete="off"
+      />
     </div>
 
     <div class="password">
-      <input id="password" type="password" placeholder="Password" required />
+      <input
+        id="password"
+        formControlName="password"
+        type="password"
+        placeholder="Password"
+        required
+        autocomplete="off"
+      />
     </div>
 
     <p>Don't have an account? <a routerLink="/register">Register</a></p>
 
     <button id="login-btn">Login</button>
+
+    <div
+      *ngIf="email.invalid && (email.dirty || email.touched)"
+      class="alert alert-danger"
+    >
+      <div *ngIf="email.errors.required">Email is required.</div>
+      <div *ngIf="email.errors.email">Enter a valid email.</div>
+    </div>
+
+    <div
+      *ngIf="password.invalid && (password.dirty || password.touched)"
+      class="alert alert-danger"
+    >
+      <div *ngIf="password.errors.required">Password is required.</div>
+      <div *ngIf="password.errors.minlength">Password must be at least 6.</div>
+    </div>
+
+    <div *ngIf="serverMessage !== ''" class="alert alert-danger">
+      <div>{{ serverMessage }}</div>
+    </div>
   </form>
 </div>

@@ -22,6 +22,8 @@ import { EditorComponent } from './editor/editor.component';
 import { ProfileComponent } from './profile/profile.component';
 import {IssueCardComponent} from './issues/issueCard/issueCard.component';
 import {UserCardComponent} from './users/userCard/userCard.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 // Get firebase credentials
 import {firebaseConfig} from './config/firebase.config';
@@ -47,6 +49,7 @@ const config = firebaseConfig;
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     QuillModule.forRoot(),
     // 3. Initialize
     AngularFireModule.initializeApp(config),
