@@ -22,6 +22,7 @@ constructor(private afAuth: AngularFireAuth, private router: Router) {
       this.authState = AuthState.signedIn;
       this.router.navigate(['/issues']);
     } else {
+      this.user = null;
       this.authState = AuthState.signedOut;
       this.router.navigate(['/login']);
     }
