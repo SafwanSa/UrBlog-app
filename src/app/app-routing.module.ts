@@ -9,10 +9,11 @@ import { RegisterComponent } from './register/register.component';
 import { SubmitIssueComponent } from './submitIssue/submitIssue.component';
 import { UsersComponent } from './users/users.component';
 import { ProfileComponent } from './profile/profile.component';
+import { AuthGuard } from './guard/auth.guard';
 
 const routes: Routes = [
   {path: 'articles', component: ArticlesComponent},
-  {path: 'issues', component: IssuesComponent},
+  {path: 'issues', component: IssuesComponent, canActivate: [AuthGuard]},
   {path: 'users', component: UsersComponent},
   {path: 'submitIssue', component: SubmitIssueComponent},
   {path: 'register', component: RegisterComponent},

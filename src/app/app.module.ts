@@ -23,10 +23,11 @@ import { ProfileComponent } from './profile/profile.component';
 import {IssueCardComponent} from './issues/issueCard/issueCard.component';
 import {UserCardComponent} from './users/userCard/userCard.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 // Get firebase credentials
 import {firebaseConfig} from './config/firebase.config';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 const config = firebaseConfig;
 
 @NgModule({
@@ -51,11 +52,12 @@ const config = firebaseConfig;
     AppRoutingModule,
     ReactiveFormsModule,
     QuillModule.forRoot(),
+    MatSnackBarModule,
     // 3. Initialize
     AngularFireModule.initializeApp(config),
     AngularFirestoreModule, // firestore
     AngularFireAuthModule, // auth
-    AngularFireStorageModule // storage
+    AngularFireStorageModule, NoopAnimationsModule // storage
   ],
   providers: [],
   bootstrap: [AppComponent]

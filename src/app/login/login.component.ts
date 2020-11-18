@@ -39,11 +39,11 @@ export class LoginComponent implements OnInit {
 
     try {
      await this.afAuth.signInWithEmailAndPassword(email, password);
+     console.log('Success');
+     console.log((await this.afAuth.currentUser).uid);
     }catch(err) {
       this.serverMessage = err;
     }
-    console.log("Success");
-    
     this.loading = false;
   }
 }
