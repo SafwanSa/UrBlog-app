@@ -21,7 +21,7 @@
     <a id="register" routerLink="/register">Register</a>
   </div>
 
-  <div class="right-side" *ngIf="doesUserExist()">
+  <div class="right-side" *ngIf="user">
     <p>{{ user.uid }}</p>
     <button class="btn btn-danger" (click)="signOut()">Logout</button>
   </div>

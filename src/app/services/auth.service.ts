@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
-export enum AuthState {
+
+enum AuthState {
   signedIn, signedOut, undefined
 }
 
@@ -13,16 +15,18 @@ export class AuthService {
   authState = AuthState.undefined;
   user;
 
-constructor(private afAuth: AngularFireAuth) {
+constructor(private afAuth: AngularFireAuth, private router: Router) {
   this.afAuth.onAuthStateChanged((user) => {
     if (user) {
       this.user = user;
       this.authState = AuthState.signedIn;
+      this.router.navigate(['/issues']);
     } else {
       this.authState = AuthState.signedOut;
+      this.router.navigate(['/login']);
     }
   });
-  this.getUser();
+    this.getUser();
 }
 
 
@@ -59,6 +63,13 @@ async logout() {
    }catch(err) {
      return err;
    }
+}
+
+get isSignedIn() {
+  if (this.authState === AuthState.signedIn) {
+    return true;
+  }
+  return false;
 }
 
 
