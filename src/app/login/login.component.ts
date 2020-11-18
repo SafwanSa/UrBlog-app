@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validator, Validators} from '@angular/forms';
 import {AngularFireAuth} from '@angular/fire/auth';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,11 @@ export class LoginComponent implements OnInit {
   loading = false;
   serverMessage: string = "";
 
-  constructor(private afAuth: AngularFireAuth, private fb: FormBuilder) {}
+  constructor(
+    private afAuth: AngularFireAuth,
+    private fb: FormBuilder,
+    private authService: AuthService
+    ) {}
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -37,13 +42,9 @@ export class LoginComponent implements OnInit {
     const email = this.email.value;
     const password = this.password.value;
 
-    try {
-     await this.afAuth.signInWithEmailAndPassword(email, password);
-     console.log('Success');
-     console.log((await this.afAuth.currentUser).uid);
-    }catch(err) {
-      this.serverMessage = err;
-    }
+    this.authService.login(email, password)
+    .then(err => this.serverMessage = err);
+    
     this.loading = false;
   }
 }

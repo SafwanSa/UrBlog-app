@@ -16,8 +16,13 @@
       >
     </nav>
   </div>
-  <div class="right-side">
+  <div class="right-side" *ngIf="!doesUserExist()">
     <a id="login" routerLink="/login">Login</a>
     <a id="register" routerLink="/register">Register</a>
+  </div>
+
+  <div class="right-side" *ngIf="doesUserExist()">
+    <p>{{ user.uid }}</p>
+    <button class="btn btn-danger" (click)="signOut()">Logout</button>
   </div>
 </header>
