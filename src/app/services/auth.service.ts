@@ -42,7 +42,7 @@ async register(email: string, password: string) {
   try {
     await this.afAuth.createUserWithEmailAndPassword(email, password);
     return "";
-   }catch(err) {
+   }catch (err) {
      return err;
    }
 }
@@ -51,16 +51,16 @@ async login(email: string, password: string) {
   try {
     await this.afAuth.signInWithEmailAndPassword(email, password);
     return "";
-   }catch(err) {
+   }catch (err) {
      return err;
    }
 }
 
 async logout() {
   try {
-    await this.afAuth.signOut()
+    await this.afAuth.signOut();
     return "";
-   }catch(err) {
+   }catch (err) {
      return err;
    }
 }
