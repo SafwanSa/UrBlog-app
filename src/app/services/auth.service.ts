@@ -1,7 +1,14 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
+import * as firebase from 'firebase';
 import { Router } from '@angular/router';
-import { first } from 'rxjs/operators';
+import { first, map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+
+type Result = Promise<{
+  user?: firebase.User;
+  error?: string;
+}>;
 
 enum AuthState {
   signedIn, signedOut, undefined
@@ -13,70 +20,68 @@ enum AuthState {
 export class AuthService {
 
   authState = AuthState.undefined;
-  user;
 
-constructor(private afAuth: AngularFireAuth, private router: Router) {
-  this.afAuth.onAuthStateChanged((user) => {
-    if (user) {
-      console.log('There is');
-      this.user = user;
-      this.authState = AuthState.signedIn;
-      // this.router.navigate(['/issues']);
-    } else {
-      console.log('There is no');
-      this.user = null;
-      this.authState = AuthState.signedOut;
-      // this.router.navigate(['/login']);
-    }
-  });
-  // this.getUser();
-}
-
-
-// isLoggedIn() {
-//   return this.afAuth.authState.pipe(first()).toPromise();
-// }
-
-// async getUser() {
-//   this.user = await this.isLoggedIn();
-// }
-
-async register(email: string, password: string) {
-  try {
-    await this.afAuth.createUserWithEmailAndPassword(email, password);
-    this.router.navigate(['/profile']);
-    return '';
-   }catch (err) {
-     return err;
-   }
-}
-
-async login(email: string, password: string) {
-  try {
-    await this.afAuth.signInWithEmailAndPassword(email, password);
-    this.router.navigate(['/profile']);
-    return '';
-   }catch (err) {
-     return err;
-   }
-}
-
-async logout() {
-  try {
-    await this.afAuth.signOut();
-    this.router.navigate(['/']);
-    return '';
-   }catch (err) {
-     return err;
-   }
-}
-
-get isSignedIn() {
-  if (this.authState === AuthState.signedIn) {
-    return true;
+  get isSignedIn(): Observable<boolean> {
+    return this.user$.pipe(map(user => !!user));
   }
-  return false;
-}
+
+  user$: Observable<firebase.User>;
+
+  constructor(private afAuth: AngularFireAuth) {
+    this.user$ = this.afAuth.authState;
+  }
+
+  async signInAnonymously(): Result {
+    return await this.afAuth.signInAnonymously()
+      .then(credential => ({ user: credential.user }))
+      .catch(error => ({ error: error.message }));
+  }
+
+  async signIn(email: string, password: string): Result {
+    return this.afAuth.signInWithEmailAndPassword(email, password)
+      .then(credential => ({ user: credential.user }))
+      .catch(error => ({ error }));
+  }
+
+  async signUp(email: string, password: string): Result {
+    return this.afAuth.createUserWithEmailAndPassword(email, password)
+      .then(async (credential) =>
+        credential.user.sendEmailVerification().then(() => ({
+          user: credential.user
+        }))
+          .catch(error => ({ user: credential.user }))
+      ).catch(error => ({ error }));
+  }
+
+  async applyActionCode(actionCode: string): Result {
+    return await this.afAuth.applyActionCode(actionCode)
+      .then(() => ({}))
+      .catch(error => ({ error: error.message }));
+  }
+
+  async sendEmailVerification(user: firebase.User): Result {
+    return await user.sendEmailVerification()
+      .then(() => ({}))
+      .catch(error => ({ error: error.message }));
+  }
+
+  async sendResetPasswordEmail(email: string): Result {
+    return await this.afAuth.sendPasswordResetEmail(email)
+      .then(() => ({}))
+      .catch(error => ({ error: error.message }));
+  }
+
+  async resetPassword(newPassword: string, actionCode: string): Result {
+    return await this.afAuth.confirmPasswordReset(actionCode, newPassword)
+      .then(() => ({}))
+      .catch(error => ({ error: error.message }));
+  }
+
+  async logout(): Result {
+    return await this.afAuth.signOut()
+      .then(() => ({}))
+      .catch(error => ({ error: error.message }));
+  }
 
 
 }

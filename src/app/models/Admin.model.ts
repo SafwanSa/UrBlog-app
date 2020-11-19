@@ -1,7 +1,7 @@
-import {User} from './user.model';
-import {Article} from './article.model';
+import { User } from './user.model';
+import { Article } from './article.model';
 
-export {Admin};
+export { Admin };
 
 class Admin extends User {
   adminToken: string;

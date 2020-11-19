@@ -1,55 +1,55 @@
 import { Injectable } from '@angular/core';
-import { Article } from '../models/article.model';
-import { FirestoreService, Collection } from './firestore.service';
+import { FireServiceBase } from './firestore/models/fire-service-base';
+import { FireModelBase } from './firestore/models/fire-model-base';
+import { FirestoreService } from './firestore/firestore.service';
+import { Observable, of } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 import { AuthService } from './auth.service';
-import { AngularFirestore } from '@angular/fire/firestore';
-
 
 @Injectable({
   providedIn: 'root'
 })
-export class ArticleService {
+export class ArticleService extends FireServiceBase<Article> {
 
-articles: Article[] = [];
+  constructor(firestore: FirestoreService, private authService: AuthService) {
+    super(Article, 'articles', firestore);
+  }
 
-constructor(
-  private frService: FirestoreService,
-  private authService: AuthService,
-  private db: AngularFirestore
-  ) {}
+  addDummyData(): Promise<void> {
+    return this.save(new Article(
+      '1',
+      'Hello world',
+      'Here I list the best of java practices',
+      '',
+      new Date(),
+      0,
+      ''
+    ));
+  }
 
+  getUserArticles(): Observable<Article[] | null> {
+    return this.authService.user$.pipe(
+      switchMap(user => {
+        if (!user) {
+          return of(null);
+        }
+        return this.getAll$((ref) => ref.where('uid', '==', user.uid));
+      })
+    );
+  }
 
-addDummyData() {
-  this.db.collection('articles').add(
-    {
-      id: '1',
-      title: 'Hello world',
-      description: 'Here I list the best of java practices',
-      content: '',
-      date: new Date(),
-      rating: 0,
-      uid: this.authService.user.uid
-    }
-  )
-  .then(() => {
-    console.log('Saved');
-  })
-  .catch(() => {
-    console.log('Error');
-  });
 }
 
-
-getAllArticles(uid: string) {
-}
-
-getUserArticle() {
-  this.frService
-  .getDocumentOnceByUid<Article>('G1ZvlJ2evnbqFAwiM2FGOisqLkH2', Collection.Articles)
-  .subscribe(articles => this.articles = articles);
-}
-
-
-
-
+export class Article extends FireModelBase {
+  constructor(
+    public id: string = '',
+    public title: string = '',
+    public description: string = '',
+    public content: string = '',
+    public date: Date = new Date(),
+    public rating: number = 0,
+    public uid: string = '',
+  ) {
+    super();
+  }
 }
