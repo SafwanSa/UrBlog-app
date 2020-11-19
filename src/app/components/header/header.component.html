@@ -16,12 +16,12 @@
       >
     </nav>
   </div>
-  <div class="right-side" *ngIf="!user">
+  <div class="right-side" *ngIf="!user && !isProcessing">
     <a id="login" routerLink="/login">Login</a>
     <a id="register" routerLink="/register">Register</a>
   </div>
 
-  <div class="right-side" *ngIf="user">
+  <div class="right-side" *ngIf="user && !isProcessing">
     <p>{{ user.uid }}</p>
     <button class="btn btn-danger" (click)="signOut()">Logout</button>
   </div>

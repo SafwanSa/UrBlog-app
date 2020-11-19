@@ -11,6 +11,7 @@ import { AuthService } from '../../services/auth.service';
 export class HeaderComponent implements OnInit {
 
   user;
+  isProcessing = true;
 
   constructor(public authService: AuthService, private router: Router) { }
 
@@ -19,7 +20,7 @@ export class HeaderComponent implements OnInit {
   }
 
   observeAuthUser(): void {
-    this.authService.user$.subscribe(user => this.user = user);
+    this.authService.user$.subscribe(user => { this.user = user; this.isProcessing = false; });
   }
 
   async signOut(): Promise<void> {
