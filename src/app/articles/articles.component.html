@@ -11,8 +11,12 @@
       <a href="">Bootstrap</a>
     </div>
 
-    <form action="">
-      <input type="text" placeholder="e.g. best practices" />
+    <form [formGroup]="form">
+      <input
+        type="text"
+        formControlName="search"
+        placeholder="e.g. best practices"
+      />
       <button>Search</button>
     </form>
   </div>

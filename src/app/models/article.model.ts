@@ -7,7 +7,7 @@ class Article {
   content: string;
   date: Date;
   rating: number;
-  bloggerUid: string;
+  uid: string;
 
 
   // constructor(article: Article) {

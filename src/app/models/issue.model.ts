@@ -6,5 +6,5 @@ class Issue {
   description: string;
   date: Date;
   isProcessed: boolean;
-  staffUid: string;
+  uid: string;
 }

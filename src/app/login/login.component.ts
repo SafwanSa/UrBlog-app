@@ -42,9 +42,8 @@ export class LoginComponent implements OnInit {
     const email = this.email.value;
     const password = this.password.value;
 
-    this.authService.login(email, password)
-    .then(err => this.serverMessage = err);
-    
+    this.serverMessage = await this.authService.login(email, password);
+
     this.loading = false;
   }
 }

@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Article } from '../models/article.model';
+import { FirestoreService, Collection } from './firestore.service';
+import { AuthService } from './auth.service';
 import { AngularFirestore } from '@angular/fire/firestore';
+
 
 @Injectable({
   providedIn: 'root'
@@ -9,24 +12,24 @@ export class ArticleService {
 
 articles: Article[];
 
-constructor(private db: AngularFirestore) {
+constructor(private frService: FirestoreService, private authService: AuthService, private db: AngularFirestore) {
   this.articles = [];
-
-  this.getArticles('ss')
-  .subscribe(articles => this.articles = articles);
+  this.getUserArticle();
 }
 
 
-addDummyData(db) {
-  db.collection('articles').add(
+addDummyData() {
+  console.log("DDD");
+  
+  this.db.collection('articles').add(
     {
       id: '1',
-      title: 'Java best practices',
+      title: 'Hello world',
       description: 'Here I list the best of java practices',
       content: '',
       date: new Date(),
       rating: 0,
-      bloggerUid: 'ss'
+      uid: this.authService.user.uid
     }
   )
   .then(() => {
@@ -38,10 +41,13 @@ addDummyData(db) {
 }
 
 
-getArticles(uid: string) {
-  return this.db.collection<Article>('articles', (ref) =>
-    ref.where('bloggerUid', '==', uid)
-  ).valueChanges();
+getAllArticles(uid: string) {
+}
+
+getUserArticle() {
+  this.frService
+  .getDocumentOnceByUid<Article>(this.authService.user.uid, Collection.Articles)
+  .subscribe(articles => this.articles = articles);
 }
 
 

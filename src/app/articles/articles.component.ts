@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ArticleService } from '../services/article.service';
 import { Article } from '../models/article.model';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-articles',
@@ -10,11 +11,16 @@ import { Article } from '../models/article.model';
 export class ArticlesComponent implements OnInit {
 
   articles: Article[] = [];
-  constructor(private articleService: ArticleService) {
-    this.articles = articleService.articles;
+  form: FormGroup;
+
+  constructor(private articleService: ArticleService, private fb: FormBuilder) {
+    this.articles = this.articleService.articles;
   }
 
   ngOnInit() {
+    this.form = this.fb.group({
+      'search': ['']
+    });
   }
 
 }
