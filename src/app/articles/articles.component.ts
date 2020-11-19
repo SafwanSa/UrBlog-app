@@ -13,14 +13,14 @@ export class ArticlesComponent implements OnInit {
   articles: Article[] = [];
   form: FormGroup;
 
-  constructor(private articleService: ArticleService, private fb: FormBuilder) {
-    this.articles = this.articleService.articles;
-  }
+  constructor(private articleService: ArticleService, private fb: FormBuilder) {}
 
   ngOnInit() {
     this.form = this.fb.group({
       'search': ['']
     });
-  }
 
+    this.articleService.getUserArticle();
+    this.articles = this.articleService.articles;
+  }
 }

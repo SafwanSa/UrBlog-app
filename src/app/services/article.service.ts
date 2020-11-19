@@ -10,17 +10,16 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class ArticleService {
 
-articles: Article[];
+articles: Article[] = [];
 
-constructor(private frService: FirestoreService, private authService: AuthService, private db: AngularFirestore) {
-  this.articles = [];
-  this.getUserArticle();
-}
+constructor(
+  private frService: FirestoreService,
+  private authService: AuthService,
+  private db: AngularFirestore
+  ) {}
 
 
 addDummyData() {
-  console.log("DDD");
-  
   this.db.collection('articles').add(
     {
       id: '1',
@@ -46,7 +45,7 @@ getAllArticles(uid: string) {
 
 getUserArticle() {
   this.frService
-  .getDocumentOnceByUid<Article>(this.authService.user.uid, Collection.Articles)
+  .getDocumentOnceByUid<Article>('G1ZvlJ2evnbqFAwiM2FGOisqLkH2', Collection.Articles)
   .subscribe(articles => this.articles = articles);
 }
 

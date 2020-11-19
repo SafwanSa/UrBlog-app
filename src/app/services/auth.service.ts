@@ -18,32 +18,34 @@ export class AuthService {
 constructor(private afAuth: AngularFireAuth, private router: Router) {
   this.afAuth.onAuthStateChanged((user) => {
     if (user) {
+      console.log('There is');
       this.user = user;
       this.authState = AuthState.signedIn;
       // this.router.navigate(['/issues']);
     } else {
+      console.log('There is no');
       this.user = null;
       this.authState = AuthState.signedOut;
       // this.router.navigate(['/login']);
     }
   });
-    this.getUser();
+  // this.getUser();
 }
 
 
-isLoggedIn() {
-  return this.afAuth.authState.pipe(first()).toPromise();
-}
+// isLoggedIn() {
+//   return this.afAuth.authState.pipe(first()).toPromise();
+// }
 
-async getUser() {
-  this.user = await this.isLoggedIn();
-}
+// async getUser() {
+//   this.user = await this.isLoggedIn();
+// }
 
 async register(email: string, password: string) {
   try {
     await this.afAuth.createUserWithEmailAndPassword(email, password);
     this.router.navigate(['/profile']);
-    return "";
+    return '';
    }catch (err) {
      return err;
    }
@@ -53,7 +55,7 @@ async login(email: string, password: string) {
   try {
     await this.afAuth.signInWithEmailAndPassword(email, password);
     this.router.navigate(['/profile']);
-    return "";
+    return '';
    }catch (err) {
      return err;
    }
@@ -63,7 +65,7 @@ async logout() {
   try {
     await this.afAuth.signOut();
     this.router.navigate(['/']);
-    return "";
+    return '';
    }catch (err) {
      return err;
    }
