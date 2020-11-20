@@ -1,13 +1,41 @@
 <div class="root-container">
-  <div class="action">
-    <button id="add-btn">Publish</button>
-    <button id="discard-btn">Discard</button>
-  </div>
+  <form [formGroup]="form" class="article-info" (ngSubmit)="onSubmit()">
+    <div class="action">
+      <button id="add-btn" type="submit">Publish</button>
+      <button id="discard-btn" (click)="discard()">Discard</button>
+    </div>
+    <input id="title" formControlName="title" type="text" placeholder="Title" />
 
-  <div class="article-info">
-    <input id="title" type="text" placeholder="Title" />
-    <input id="description" type="text" placeholder="Description" />
-  </div>
+    <div
+      class="alert alert-danger"
+      *ngIf="title.invalid && (title.dirty || title.touched)"
+    >
+      <div *ngIf="title.errors.required">Title is required.</div>
+    </div>
+    <input
+      id="description"
+      formControlName="description"
+      type="text"
+      placeholder="Description"
+    />
+    <div
+      class="alert alert-danger"
+      *ngIf="description.invalid && (description.dirty || description.touched)"
+    >
+      <div *ngIf="description.errors.required">Description is required.</div>
+    </div>
 
-  <quill-editor class="editor"></quill-editor>
+    <quill-editor
+      class="editor"
+      formControlName="content"
+      (onContentChanged)="contentString = $event.text"
+      required
+    ></quill-editor>
+    <div
+      class="alert alert-danger"
+      *ngIf="content.invalid && (content.dirty || content.touched)"
+    >
+      <div *ngIf="content.errors.required">Content is required.</div>
+    </div>
+  </form>
 </div>
