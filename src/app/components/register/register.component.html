@@ -32,17 +32,6 @@
         autocomplete="off"
         required
       />
-
-      <input class="gender" type="radio" name="gender" value="male" checked />
-      <label for="">Male</label>
-      <input
-        class="gender"
-        formControlName="gender"
-        type="radio"
-        name="gender"
-        value="female"
-      />
-      <label for="">Female</label>
     </div>
 
     <div class="password">
@@ -53,20 +42,11 @@
         placeholder="Password"
         required
       />
-      <input
-        id="confirm-password"
-        formControlName="confirmPassword"
-        type="password"
-        placeholder="Confirm Password"
-        required
-      />
     </div>
 
     <p>Already have an account? <a routerLink="/login">Login</a></p>
 
-    <button id="register-btn" [disabled]="!passwordDoesMatch" type="submit">
-      Register
-    </button>
+    <button id="register-btn" type="submit">Register</button>
 
     <div
       *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
@@ -96,21 +76,6 @@
     >
       <div *ngIf="password.errors.required">Password is required.</div>
       <div *ngIf="password.errors.minlength">Password must be at least 6.</div>
-    </div>
-
-    <div
-      *ngIf="
-        confirmPassword.invalid &&
-        (confirmPassword.dirty || confirmPassword.touched)
-      "
-      class="alert alert-danger"
-    >
-      <div *ngIf="confirmPassword.errors.required">
-        Confirm Password is required.
-      </div>
-      <div *ngIf="!passwordDoesMatch">
-        Confirm password does not match the password.
-      </div>
     </div>
 
     <div *ngIf="serverMessage !== ''" class="alert alert-danger">

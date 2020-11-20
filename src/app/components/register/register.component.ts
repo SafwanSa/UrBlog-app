@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validator, Validators } from '@angular/forms';
-import { AngularFireAuth } from '@angular/fire/auth';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+import { User, UserService, Role } from '../../services/user.service';
 
 @Component({
   selector: 'app-register',
@@ -15,19 +15,17 @@ export class RegisterComponent implements OnInit {
   serverMessage = '';
 
   constructor(
-    private afAuth: AngularFireAuth,
     private fb: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private userService: UserService
   ) { }
 
   ngOnInit(): void {
     this.form = this.fb.group({
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
-      gender: ['0', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', []]
+      password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
 
@@ -43,30 +41,26 @@ export class RegisterComponent implements OnInit {
     return this.form.get('email');
   }
 
-  get gender(): any {
-    return this.form.get('gender');
-  }
-
   get password(): any {
     return this.form.get('password');
   }
 
-  get confirmPassword(): any {
-    return this.form.get('confirmPassword');
-  }
-
-  get passwordDoesMatch(): any {
-    return this.password.value === this.confirmPassword.value;
-  }
-
   async onSubmit(): Promise<void> {
     this.loading = true;
-
     const email = this.email.value;
     const password = this.password.value;
 
     const result = await this.authService.signUp(email, password);
-    if (result.error) { this.serverMessage = result.error; }
+    if (result.error) { this.serverMessage = result.error; return; }
+    if (result.user) {
+      this.userService.saveUser(new User(
+        result.user.uid,
+        this.firstName.value,
+        this.lastName.value,
+        result.user.email,
+        Role.Blogger
+      ));
+    }
 
     this.loading = false;
   }
