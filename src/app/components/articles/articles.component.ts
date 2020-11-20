@@ -20,8 +20,7 @@ export class ArticlesComponent implements OnInit {
     this.form = this.fb.group({
       search: ['']
     });
-    // this.articleService.col$('articles').subscribe();
     // this.articleService.addDummyData().then();
-    this.articleService.getAll$().subscribe(articles => this.articles = articles);
+    this.articleService.getAllArticles().subscribe(articles => this.articles = articles);
   }
 }

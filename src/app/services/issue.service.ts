@@ -9,49 +9,48 @@ import { AuthService } from './auth.service';
 @Injectable({
   providedIn: 'root'
 })
-export class ArticleService extends FireServiceBase<Article> {
+export class IssueService extends FireServiceBase<Issue> {
 
   constructor(
     private firestore: FirestoreService,
     private authService: AuthService
   ) {
-    super(Article, 'articles', firestore);
+    super(Issue, 'issues', firestore);
   }
 
-  addDummyData(): Promise<void> {
-    return this.save(new Article(
+  addDummyData(): void {
+    this.saveIssue(new Issue(
       '1',
       'Hello world',
       'Here I list the best of java practices',
-      '',
       new Date(),
-      0,
+      false,
       ''
     ));
   }
-  // This going to be called by every authenticated user
-  saveArticle(article): Promise<void> {
-    return this.save(article);
-  }
   // This going to be called by every user
-  getAllArticles(): Observable<Article[]> {
+  saveIssue(issue): Promise<void> {
+    return this.save(issue);
+  }
+  // This going to be called by every staff member
+  getAllIssues(): Observable<Issue[]> {
     return this.getAll$();
   }
   // This going to be called by every user profile
-  getUserArticles(uid): Observable<Article[]> {
-    return this.firestore.col$<Article>('articles', ref => ref.where('uid', '==', uid));
+  getUserIssues(uid): Observable<Issue[]> {
+    return this.firestore.col$<Issue>('issues', ref => ref.where('uid', '==', uid));
   }
 }
 
-export class Article extends FireModelBase {
+
+export class Issue extends FireModelBase {
   constructor(
     public id: string = '',
     public title: string = '',
     public description: string = '',
-    public content: string = '',
     public date: Date = new Date(),
-    public rating: number = 0,
-    public uid: string = '',
+    public isProcessed: boolean = false,
+    public uid: string = ''
   ) {
     super();
   }

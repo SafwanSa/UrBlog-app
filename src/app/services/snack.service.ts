@@ -2,15 +2,16 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { tap } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SnackService {
 
-  constructor(private snackBar: MatSnackBar, private router: Router) {}
+  constructor(private snackBar: MatSnackBar, private router: Router) { }
 
-  authError() {
+  authError(): Subscription {
     this.snackBar.open('You must be logged in!', 'OK', {
       duration: 5000
     });
