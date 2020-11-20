@@ -4,15 +4,18 @@
       <img src="../../assets/images/b.jpg" alt="" />
     </div>
 
-    <p id="email">safwan9f@gmail.com</p>
+    <p id="email">{{ user.email }}</p>
 
-    <label for="">First Name</label><input type="text" value="Safwan" />
-    <label for="">Last Name</label><input type="text" value="Saigh" />
+    <label for="">{{ user.firstName }}</label>
+    <label for="">{{ user.lastName }}</label>
   </div>
 
-  <div class="articles">
+  <div class="articles" *ngIf="user.role === 'blogger'">
     <p id="title">Articles</p>
-
-    <app-article></app-article>
+    <app-article
+      *ngFor="let article of articles"
+      [article]="article"
+    ></app-article>
+    <p *ngIf="articles.length === 0">You do not have any articles yet :(</p>
   </div>
 </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { User, UserService, Role } from '../../services/user.service';
 
@@ -17,7 +18,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -51,7 +53,7 @@ export class RegisterComponent implements OnInit {
     const password = this.password.value;
 
     const result = await this.authService.signUp(email, password);
-    if (result.error) { this.serverMessage = result.error; return; }
+    if (result.error) { this.serverMessage = result.error; this.loading = false; return; }
     if (result.user) {
       this.userService.saveUser(new User(
         result.user.uid,
@@ -60,6 +62,7 @@ export class RegisterComponent implements OnInit {
         result.user.email,
         Role.Blogger
       ));
+      this.router.navigateByUrl('/profile');
     }
 
     this.loading = false;

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validator, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -15,7 +16,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -41,8 +43,8 @@ export class LoginComponent implements OnInit {
     const password = this.password.value;
 
     const result = await this.authService.signIn(email, password);
-    if (result.error) { this.serverMessage = result.error; }
-
+    if (result.error) { this.serverMessage = result.error; this.loading = false; return; }
+    if (result.user) { this.router.navigateByUrl('/profile'); }
     this.loading = false;
   }
 }

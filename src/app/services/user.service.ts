@@ -23,7 +23,7 @@ export class UserService extends FireServiceBase<User>{
     return this.save(user);
   }
 
-  retrieveUser(): Observable<User | null> {
+  retrieveCurrentUser(): Observable<User | null> {
     return this.authService.user$.pipe(
       switchMap(user => {
         if (!user) {
@@ -34,6 +34,9 @@ export class UserService extends FireServiceBase<User>{
     );
   }
 
+  private retrieveUser(uid: string): Observable<User> {
+    return this.get$(uid);
+  }
 }
 
 

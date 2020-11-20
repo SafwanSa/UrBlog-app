@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Article, ArticleService } from 'src/app/services/article.service';
+import { FirestoreService } from 'src/app/services/firestore/firestore.service';
+import { User, UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-profile',
@@ -7,9 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+  user: User = new User();
+  articles: Article[];
+
+  constructor(private userService: UserService, private articleService: ArticleService, private fr: FirestoreService) { }
 
   ngOnInit(): void {
+    this.userService.retrieveCurrentUser().subscribe(user => {
+      if (!user) {
+        return;
+      }
+      this.user = user;
+      this.fr.col$<Article>('articles', (ref) => ref.where('uid', '==', user.uid))
+        .subscribe(articles => this.articles = articles);
+    });
   }
 
 }
