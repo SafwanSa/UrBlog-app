@@ -12,17 +12,22 @@ export class ProfileComponent implements OnInit {
 
   user: User = new User();
   articles: Article[];
+  isProcessing = true;
 
   constructor(private userService: UserService, private articleService: ArticleService, private fr: FirestoreService) { }
 
   ngOnInit(): void {
+    this.isProcessing = true;
     this.userService.retrieveCurrentUser().subscribe(user => {
       if (!user) {
         return;
       }
       this.user = user;
       this.fr.col$<Article>('articles', (ref) => ref.where('uid', '==', user.uid))
-        .subscribe(articles => this.articles = articles);
+        .subscribe(articles => {
+          this.articles = articles;
+          this.isProcessing = false;
+        });
     });
   }
 
