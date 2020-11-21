@@ -46,10 +46,10 @@ export class UserService extends FireServiceBase<User>{
 
 
 export enum Role {
-  Admin = 'Admin',
-  Staff = 'Staff',
+  Admin = 'admin',
+  Staff = 'staff',
   Blogger = 'blogger',
-  Visitor = 'Visitor'
+  Visitor = 'visitor'
 }
 
 export class User extends FireModelBase {

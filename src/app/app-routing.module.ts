@@ -10,7 +10,7 @@ import { SubmitIssueComponent } from './components/submitIssue/submitIssue.compo
 import { UsersComponent } from './components/users/users.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { AuthGuard } from './guards/auth.guard';
-
+import { AdminGuard } from './guards/admin.guard';
 
 const routes: Routes = [
   { path: 'articles', component: ArticlesComponent },
@@ -22,7 +22,7 @@ const routes: Routes = [
 
   {
     path: 'users', component: UsersComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, AdminGuard],
   },
 
   { path: 'submitIssue', component: SubmitIssueComponent },
