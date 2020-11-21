@@ -11,23 +11,36 @@ import { UsersComponent } from './components/users/users.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { AuthGuard } from './guards/auth.guard';
 
-import { AngularFireAuthGuard, redirectUnauthorizedTo, redirectLoggedInTo } from '@angular/fire/auth-guard';
-
-const redirectUnauthorizedToHome = () => redirectUnauthorizedTo(['/']);
-const redirectLoggedInToAccount = () => redirectLoggedInTo(['/profile']);
 
 const routes: Routes = [
   { path: 'articles', component: ArticlesComponent },
-  { path: 'issues', component: IssuesComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToHome } },
-  { path: 'users', component: UsersComponent },
-  { path: 'submitIssue', component: SubmitIssueComponent },
+
   {
-    path: 'register', component: RegisterComponent,
-    canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectLoggedInToAccount }
+    path: 'issues', component: IssuesComponent,
+    canActivate: [AuthGuard],
   },
-  { path: 'login', component: LoginComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectLoggedInToAccount } },
-  { path: 'editor', component: EditorComponent },
-  { path: 'profile', component: ProfileComponent },
+
+  {
+    path: 'users', component: UsersComponent,
+    canActivate: [AuthGuard],
+  },
+
+  { path: 'submitIssue', component: SubmitIssueComponent },
+
+  { path: 'register', component: RegisterComponent },
+
+  { path: 'login', component: LoginComponent },
+
+  {
+    path: 'editor', component: EditorComponent,
+    canActivate: [AuthGuard],
+  },
+
+  {
+    path: 'profile', component: ProfileComponent,
+    canActivate: [AuthGuard],
+  },
+
   { path: '', component: HomeComponent }
 ];
 
