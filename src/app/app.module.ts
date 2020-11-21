@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 import { QuillModule } from 'ngx-quill';
 // Firebase modules
 import { AngularFireModule } from '@angular/fire';
-import { AngularFirestoreModule, AngularFirestore } from '@angular/fire/firestore';
-import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireAuthGuardModule } from '@angular/fire/auth-guard';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,13 +22,13 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { IssueCardComponent } from './components/issues/issueCard/issueCard.component';
 import { UserCardComponent } from './components/users/userCard/userCard.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
 
 // Get firebase credentials
 import { environment } from '../environments/environment';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { ArticleService } from './services/article.service';
 
 @NgModule({
   declarations: [
@@ -54,6 +54,7 @@ import { ArticleService } from './services/article.service';
     ReactiveFormsModule,
     QuillModule.forRoot(),
     MatSnackBarModule,
+    MatButtonModule,
     // 3. Initialize
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule, // firestore
