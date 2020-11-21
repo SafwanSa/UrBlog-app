@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { User, UserService, Role } from '../../services/user.service';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-register',

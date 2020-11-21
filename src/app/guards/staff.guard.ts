@@ -9,7 +9,7 @@ import { app } from 'firebase';
 @Injectable({
   providedIn: 'root'
 })
-export class AdminGuard implements CanActivate {
+export class StaffGuard implements CanActivate {
 
   constructor(
     private auth: AuthService,
@@ -22,7 +22,7 @@ export class AdminGuard implements CanActivate {
     return this.auth.user$.pipe(
       switchMap(user => {
         return this.userService.get$(user.uid).pipe(map(appUser => {
-          if (appUser) { return appUser.role === Role.Admin; }
+          if (appUser) { return appUser.role === Role.Admin || appUser.role === Role.Staff; }
           this.router.navigateByUrl('/');
           return false;
         }));

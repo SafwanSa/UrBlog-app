@@ -23,6 +23,7 @@ import { IssueCardComponent } from './components/issues/issueCard/issueCard.comp
 import { UserCardComponent } from './components/users/userCard/userCard.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatCardModule } from '@angular/material/card';
 
 // Get firebase credentials
 import { environment } from '../environments/environment';
@@ -47,6 +48,7 @@ import { ArticleService } from './services/article.service';
     UserCardComponent
   ],
   imports: [
+    MatCardModule,
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
