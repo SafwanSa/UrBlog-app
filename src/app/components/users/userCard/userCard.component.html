@@ -7,10 +7,17 @@
       alt=""
     />
     <div>
-      <p id="name">Safwan Saigh | <span class="active">Active</span></p>
-      <p id="email">safwan9f@gmail.com</p>
-      <p id="articles-num">Last seen: <b>1 hour ago</b></p>
+      <p id="name">
+        {{ user.firstName + " " + user.lastName }} |
+        <span [class]="user.isBlocked ? 'blocked' : 'active'">{{
+          user.isBlocked ? "Blocked" : "Active"
+        }}</span>
+      </p>
+      <p id="email">{{ user.email }}</p>
+      <p id="articles-num">Last seen: <b>1 hour ago (Should be dynamic)</b></p>
     </div>
   </div>
-  <button class="block-btn">Block</button>
+  <button [class]="user.isBlocked ? 'btn btn-primary' : 'btn btn-danger'">
+    {{ user.isBlocked ? "Unblock" : "Block" }}
+  </button>
 </a>

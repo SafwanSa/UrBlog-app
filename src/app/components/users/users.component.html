@@ -7,13 +7,17 @@
       <a href="">Blogger</a>
     </div>
 
-    <!-- <form action="">
-      <input type="text" placeholder="e.g. Abdulelah Hajjar" />
+    <form [formGroup]="form">
+      <input
+        formControlName="search"
+        type="text"
+        placeholder="e.g. Abdulelah Hajjar"
+      />
       <button>Search</button>
-    </form> -->
+    </form>
   </div>
 
   <div class="users-container">
-    <app-user-card></app-user-card>
+    <app-user-card *ngFor="let user of users" [user]="user"></app-user-card>
   </div>
 </div>

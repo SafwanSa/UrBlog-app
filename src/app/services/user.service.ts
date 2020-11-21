@@ -23,6 +23,11 @@ export class UserService extends FireServiceBase<User>{
     return this.save(user);
   }
 
+  // This will be called by the admin
+  getAllUsers(): Observable<User[]> {
+    return this.getAll$();
+  }
+
   retrieveCurrentUser(): Observable<User | null> {
     return this.authService.user$.pipe(
       switchMap(user => {
@@ -49,10 +54,12 @@ export enum Role {
 
 export class User extends FireModelBase {
   constructor(
+    public id: string = '',
     public uid: string = '',
     public firstName: string = '',
     public lastName: string = '',
     public email: string = '',
+    public isBlocked: boolean = false,
     public role: string = ''
   ) {
     super();
