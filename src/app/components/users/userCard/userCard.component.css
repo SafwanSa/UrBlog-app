@@ -1,4 +1,4 @@
-a {
+.root-container {
   display: flex;
   justify-content: space-between;
   justify-items: center;
@@ -44,4 +44,8 @@ a {
 
 .myCard > div {
   margin: 0 1rem;
+}
+
+.btn {
+  width: 20%;
 }

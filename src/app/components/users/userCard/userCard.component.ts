@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { User } from 'src/app/services/user.service';
+import { User, UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-user-card',
@@ -9,10 +9,19 @@ import { User } from 'src/app/services/user.service';
 export class UserCardComponent implements OnInit {
 
   @Input() user: User;
+  isProcessed = false;
 
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
+  }
+
+  blockStateHandler(): void {
+    this.isProcessed = true;
+    this.user.isBlocked = !this.user.isBlocked;
+    this.userService.saveUser(this.user).then(() => {
+      this.isProcessed = false;
+    });
   }
 
 }
