@@ -2,6 +2,9 @@
   <p id="title">Issues</p>
 
   <div class="issues-container">
-    <app-issue-card></app-issue-card>
+    <app-issue-card
+      *ngFor="let issue of issues"
+      [issue]="issue"
+    ></app-issue-card>
   </div>
 </div>

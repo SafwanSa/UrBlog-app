@@ -17,8 +17,6 @@
   color: gray;
 }
 
-.issueCard button {
-  background: rgb(223, 66, 66);
-  color: white;
-  padding: 1rem;
+.btn {
+  width: 20%;
 }

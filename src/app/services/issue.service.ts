@@ -20,8 +20,8 @@ export class IssueService extends FireServiceBase<Issue> {
 
   addDummyData(): void {
     this.saveIssue(new Issue(
-      '1',
-      'Hello world',
+      '2',
+      'Hello worldsdsdsdsds',
       'Here I list the best of java practices',
       new Date(),
       false,

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Issue, IssueService } from '../../../services/issue.service';
 
 @Component({
   selector: 'app-issue-card',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IssueCardComponent implements OnInit {
 
-  constructor() { }
+  @Input() issue: Issue;
+  isProcessed = true;
+
+  constructor(private issueService: IssueService) { }
 
   ngOnInit(): void {
   }
 
+  processStateHandler(): void {
+    this.isProcessed = true;
+    this.issue.isProcessed = !this.issue.isProcessed;
+    this.issueService.saveIssue(this.issue)
+      .then(_ => {
+        this.isProcessed = false;
+      });
+  }
 }

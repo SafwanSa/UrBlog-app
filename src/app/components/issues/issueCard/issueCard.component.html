@@ -1,9 +1,14 @@
 <div class="issueCard">
   <div class="issue-info">
-    <p id="issue-title">Something is wrong with the register!</p>
-    <p id="description">blablablalballkndsjfdsh hksdf hsdkh</p>
+    <p id="issue-title">{{ issue.title }}</p>
+    <p id="description">{{ issue.description }}</p>
 
-    <p id="date">November 4, 2020</p>
+    <p id="date">{{ issue.date }}</p>
   </div>
-  <button>Process</button>
+  <button
+    (click)="processStateHandler()"
+    [class]="issue.isProcessed ? 'btn btn-primary' : 'btn btn-danger'"
+  >
+    {{ issue.isProcessed ? "UnProcess" : "Process" }}
+  </button>
 </div>

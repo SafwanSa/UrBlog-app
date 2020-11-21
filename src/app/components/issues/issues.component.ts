@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Issue, IssueService } from '../../services/issue.service';
 @Component({
   selector: 'app-issues',
   templateUrl: './issues.component.html',
@@ -7,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IssuesComponent implements OnInit {
 
-  constructor() { }
+  issues: Issue[];
+  constructor(private issueService: IssueService) { }
 
   ngOnInit(): void {
+    // this.issueService.addDummyData();
+    this.issueService.getAllIssues().subscribe(issues => this.issues = issues);
   }
-
 }
