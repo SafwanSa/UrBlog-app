@@ -9,7 +9,7 @@ import { Issue, IssueService } from '../../../services/issue.service';
 export class IssueCardComponent implements OnInit {
 
   @Input() issue: Issue;
-  isProcessed = true;
+  isProcessed = false;
 
   constructor(private issueService: IssueService) { }
 

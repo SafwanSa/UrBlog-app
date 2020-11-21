@@ -1,17 +1,23 @@
 <div class="root-container">
-  <!-- <form action="">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <p id="title">Have an Issue?</p>
 
-    <input type="text" name="subject" id="subject" placeholder="Subject" />
+    <input
+      type="text"
+      formControlName="title"
+      name="subject"
+      id="subject"
+      placeholder="Subject"
+    />
 
     <textarea
       name="description"
-      id=""
+      formControlName="description"
       cols="30"
       rows="10"
       placeholder="Description"
     ></textarea>
 
-    <button id="submit-btn">Submit</button>
-  </form> -->
+    <button id="submit-btn" type="submit">Submit</button>
+  </form>
 </div>
