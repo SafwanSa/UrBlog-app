@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
+import { UserService } from 'src/app/services/user.service';
 import { Issue, IssueService } from '../../../services/issue.service';
 
 @Component({
@@ -11,7 +13,7 @@ export class IssueCardComponent implements OnInit {
   @Input() issue: Issue;
   isProcessed = false;
 
-  constructor(private issueService: IssueService) { }
+  constructor(private issueService: IssueService, private userService: UserService) { }
 
   ngOnInit(): void {
   }
@@ -19,9 +21,16 @@ export class IssueCardComponent implements OnInit {
   processStateHandler(): void {
     this.isProcessed = true;
     this.issue.isProcessed = !this.issue.isProcessed;
-    this.issueService.saveIssue(this.issue)
-      .then(_ => {
+    this.userService.retrieveCurrentUser().subscribe(user => {
+      if (!user) {
         this.isProcessed = false;
-      });
+        return;
+      }
+      this.issue.uid = user.uid;
+      this.issueService.saveIssue(this.issue)
+        .then(_ => {
+          this.isProcessed = false;
+        });
+    });
   }
 }
