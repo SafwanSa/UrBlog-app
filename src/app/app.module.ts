@@ -22,9 +22,20 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { IssueCardComponent } from './components/issues/issueCard/issueCard.component';
 import { UserCardComponent } from './components/users/userCard/userCard.component';
 import { ReactiveFormsModule } from '@angular/forms';
+
+
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
+
+import { MatIconModule } from '@angular/material/icon';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatGridListModule } from '@angular/material/grid-list';
+
 
 // Get firebase credentials
 import { environment } from '../environments/environment';
@@ -55,6 +66,13 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     QuillModule.forRoot(),
     MatSnackBarModule,
     MatButtonModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
+    MatInputModule,
+    MatSelectModule,
+    MatIconModule,
+    MatRadioModule,
+    MatGridListModule,
     // 3. Initialize
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule, // firestore
