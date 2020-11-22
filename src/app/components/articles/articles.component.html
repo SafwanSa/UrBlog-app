@@ -3,11 +3,36 @@
   <div class="config-container">
     <p id="title">Articles</p>
     <div class="sections">
-      <a href="">All</a>
-      <a href="">JavaScript</a>
-      <a href="">CSS</a>
-      <a href="">HTML</a>
-      <a href="">Bootstrap</a>
+      <a
+        (click)="selectedTag = ''"
+        [class]="selectedTag === '' ? 'active' : 'inactive'"
+        >All</a
+      >
+      <a
+        (click)="selectedTag = 'pl'"
+        [class]="selectedTag === 'pl' ? 'active' : 'inactive'"
+        >Programming languages</a
+      >
+      <a
+        (click)="selectedTag = 'frameworks'"
+        [class]="selectedTag === 'frameworks' ? 'active' : 'inactive'"
+        >Frameworks</a
+      >
+      <a
+        (click)="selectedTag = 'ai'"
+        [class]="selectedTag === 'ai' ? 'active' : 'inactive'"
+        >Artificial Intelligence</a
+      >
+      <a
+        (click)="selectedTag = 'backend'"
+        [class]="selectedTag === 'backend' ? 'active' : 'inactive'"
+        >Backend</a
+      >
+      <a
+        (click)="selectedTag = 'frontend'"
+        [class]="selectedTag === 'frontend' ? 'active' : 'inactive'"
+        >Frontend</a
+      >
     </div>
 
     <form [formGroup]="form">

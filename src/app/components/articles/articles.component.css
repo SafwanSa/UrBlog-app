@@ -31,8 +31,8 @@
 .config-container a {
   margin: 1rem;
   text-decoration: none;
-  color: gray;
   font-size: small;
+  cursor: pointer;
 }
 
 .config-container form {
@@ -65,4 +65,12 @@
   margin: 0 auto;
   height: 80%;
   width: 50%;
+}
+
+.active {
+  color: rgb(7, 111, 209);
+}
+
+.inactive {
+  color: gray;
 }

@@ -16,6 +16,7 @@ export class EditorComponent implements OnInit {
   isProcessing = true;
   contentString: string;
   article: Article;
+  selected: string;
 
   constructor(
     private fb: FormBuilder,
@@ -72,7 +73,8 @@ export class EditorComponent implements OnInit {
         this.contentString,
         new Date(),
         0,
-        user.uid
+        user.uid,
+        this.selected
       )).then(_ => {
         this.isProcessing = false;
       });
@@ -87,5 +89,4 @@ export class EditorComponent implements OnInit {
     }
     this.router.navigateByUrl('/articles');
   }
-
 }

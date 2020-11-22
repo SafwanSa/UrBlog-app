@@ -4,8 +4,20 @@
       <button id="add-btn" type="submit">Publish</button>
       <button id="delete-btn" (click)="delete()">Delete</button>
     </div>
-    <input id="title" formControlName="title" type="text" placeholder="Title" />
 
+    <mat-form-field appearance="fill">
+      <mat-label>Select an option</mat-label>
+      <mat-select [(value)]="selected">
+        <mat-option>None</mat-option>
+        <mat-option value="pl">Programming languages</mat-option>
+        <mat-option value="frameworks">Frameworks</mat-option>
+        <mat-option value="ai">AI</mat-option>
+        <mat-option value="backend">Backend</mat-option>
+        <mat-option value="frontend">Frontend</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <input id="title" formControlName="title" type="text" placeholder="Title" />
     <div
       class="alert alert-danger"
       *ngIf="title.invalid && (title.dirty || title.touched)"

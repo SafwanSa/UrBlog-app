@@ -26,6 +26,7 @@ export class ArticleService extends FireServiceBase<Article> {
       '',
       new Date(),
       0,
+      '',
       ''
     ));
   }
@@ -62,6 +63,7 @@ export class Article extends FireModelBase {
     public date: Date = new Date(),
     public rating: number = 0,
     public uid: string = '',
+    public tag: string = ''
   ) {
     super();
   }

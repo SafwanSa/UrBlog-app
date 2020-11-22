@@ -15,6 +15,7 @@ export class ArticlesComponent implements OnInit {
   isWriter: boolean[] = [];
   form: FormGroup;
   filteredArticles: Article[];
+  selectedTag = '';
 
   constructor(private articleService: ArticleService, private fb: FormBuilder) { }
 
@@ -43,8 +44,8 @@ export class ArticlesComponent implements OnInit {
   onSearch(): void {
     this.filteredArticles = this.articles.filter(article => {
       if (this.searchText.value === '') { return true; }
-      return article.description.split(' ').includes(this.searchText.value) ||
-        article.title.split(' ').includes(this.searchText.value);
+      return (article.description.split(' ').includes(this.searchText.value) ||
+        article.title.split(' ').includes(this.searchText.value)) && this.selectedTag === article.tag || this.selectedTag === '';
     }
     );
   }
