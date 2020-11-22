@@ -22,7 +22,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { IssueCardComponent } from './components/issues/issueCard/issueCard.component';
 import { UserCardComponent } from './components/users/userCard/userCard.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { ViewerComponent } from './components/viewer/viewer.component';
 
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCardModule } from '@angular/material/card';
@@ -40,6 +40,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 // Get firebase credentials
 import { environment } from '../environments/environment';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     EditorComponent,
     ProfileComponent,
     IssueCardComponent,
-    UserCardComponent
+    UserCardComponent,
+    ViewerComponent
   ],
   imports: [
     MatCardModule,
@@ -78,7 +80,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     AngularFirestoreModule, // firestore
     AngularFireAuthModule, // auth
     NoopAnimationsModule,
-    AngularFireAuthGuardModule
+    AngularFireAuthGuardModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
