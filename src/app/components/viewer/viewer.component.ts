@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Article } from 'src/app/services/article.service';
+import { Article, ArticleService } from 'src/app/services/article.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-viewer',
@@ -8,11 +9,17 @@ import { Article } from 'src/app/services/article.service';
 })
 export class ViewerComponent implements OnInit {
 
-  @Input() article: Article;
+  article: Article = new Article();
 
-  constructor() { }
+  constructor(private route: ActivatedRoute, private articleService: ArticleService, ) { }
 
   ngOnInit(): void {
+    const id = this.route.snapshot.queryParamMap.get('id');
+    if (id) {
+      this.articleService.get$(id).subscribe(article => {
+        this.article = article;
+      });
+    }
   }
 
 }

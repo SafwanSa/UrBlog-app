@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Timestamp } from 'rxjs/internal/operators/timestamp';
 import { Article, ArticleService } from 'src/app/services/article.service';
 import { AuthService } from 'src/app/services/auth.service';
@@ -15,12 +15,14 @@ export class EditorComponent implements OnInit {
   form: FormGroup;
   isProcessing = true;
   contentString: string;
+  article: Article;
 
   constructor(
     private fb: FormBuilder,
     private articleService: ArticleService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
@@ -29,6 +31,21 @@ export class EditorComponent implements OnInit {
       description: ['', Validators.required],
       content: ['', Validators.required]
     });
+    this.lockForArticle();
+  }
+
+  lockForArticle(): void {
+    const id = this.route.snapshot.queryParamMap.get('id');
+    if (id) {
+      this.articleService.get$(id).subscribe(article => {
+        this.article = article;
+        if (this.article) {
+          this.title.setValue(this.article.title);
+          this.description.setValue(this.article.description);
+          this.content.setValue(this.article.content);
+        }
+      });
+    }
   }
 
   get title(): any {
