@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Article } from 'src/app/services/article.service';
 
 @Component({
   selector: 'app-viewer',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./viewer.component.css']
 })
 export class ViewerComponent implements OnInit {
+
+  @Input() article: Article;
 
   constructor() { }
 

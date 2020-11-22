@@ -13,4 +13,26 @@
     </div>
     <p id="description">{{ article.description }}</p>
   </div>
+
+  <div class="action-card">
+    <button
+      mat-raised-button
+      class="abtn"
+      color="primary"
+      routerLink="/article"
+      [queryParams]="{ id: article.id }"
+    >
+      Read
+    </button>
+    <button
+      *ngIf="isWriter"
+      mat-raised-button
+      class="abtn"
+      color="accent"
+      routerLink="/editor"
+      [queryParams]="{ id: article.id }"
+    >
+      Edit
+    </button>
+  </div>
 </div>

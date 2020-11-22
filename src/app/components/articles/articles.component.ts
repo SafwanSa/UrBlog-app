@@ -12,6 +12,7 @@ import { FirestoreService } from 'src/app/services/firestore/firestore.service';
 export class ArticlesComponent implements OnInit {
 
   articles: Article[];
+  isWriter: boolean[] = [];
   form: FormGroup;
 
   constructor(private articleService: ArticleService, private fb: FormBuilder) { }
@@ -21,6 +22,12 @@ export class ArticlesComponent implements OnInit {
       search: ['']
     });
     // this.articleService.addDummyData().then();
-    this.articleService.getAllArticles().subscribe(articles => this.articles = articles);
+    this.articleService.getAllArticles().subscribe(articles => { this.articles = articles; this.setIsWriter(); });
+  }
+
+  setIsWriter(): void {
+    for (const article of this.articles) {
+      this.articleService.isWriter(article).subscribe(result => this.isWriter.push(result));
+    }
   }
 }

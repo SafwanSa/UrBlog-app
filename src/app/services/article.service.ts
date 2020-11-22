@@ -3,7 +3,7 @@ import { FireServiceBase } from './firestore/models/fire-service-base';
 import { FireModelBase } from './firestore/models/fire-model-base';
 import { FirestoreService } from './firestore/firestore.service';
 import { Observable, of } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -40,6 +40,12 @@ export class ArticleService extends FireServiceBase<Article> {
   // This going to be called by every user profile
   getUserArticles(uid): Observable<Article[]> {
     return this.firestore.col$<Article>('articles', ref => ref.where('uid', '==', uid));
+  }
+  isWriter(article): Observable<boolean> {
+    return this.authService.user$.pipe(map(user => {
+      if (user) { return user.uid === article.uid; }
+      return false;
+    }));
   }
 }
 

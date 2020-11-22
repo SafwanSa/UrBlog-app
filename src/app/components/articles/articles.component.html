@@ -1,5 +1,4 @@
 <a routerLink="/editor" id="addArticle">Add Article</a>
-
 <div class="root-container">
   <div class="config-container">
     <p id="title">Articles</p>
@@ -23,8 +22,9 @@
 
   <div class="articles-container">
     <app-article
-      *ngFor="let article of articles"
+      *ngFor="let article of articles; let i = index"
       [article]="article"
+      [isWriter]="isWriter[i]"
     ></app-article>
   </div>
 </div>
