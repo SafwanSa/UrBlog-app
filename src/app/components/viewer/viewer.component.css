@@ -1,0 +1,46 @@
+.root-container {
+  height: 100%;
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 8rem;
+}
+
+.info #title {
+  font-size: 45px;
+  text-align: left;
+  font-family: "Times New Roman", Times, serif;
+  color: rgb(71, 71, 71);
+}
+
+.info #description {
+  font-size: 24px;
+  color: gray;
+  text-align: left;
+}
+
+.publish-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: medium;
+}
+
+.publish-info #author {
+  color: rgb(7, 111, 209);
+}
+
+.publish-info #date {
+  color: rgb(197, 196, 196);
+}
+
+.info img {
+  width: 100%;
+}
+
+#content {
+  font-size: 20px;
+  color: rgb(71, 71, 71);
+  font-family: sans-serif;
+  margin-top: 4rem;
+  font-stretch: expanded;
+  line-height: 2.3rem;
+}

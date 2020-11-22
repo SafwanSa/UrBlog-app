@@ -9,14 +9,13 @@ import { RegisterComponent } from './components/register/register.component';
 import { SubmitIssueComponent } from './components/submitIssue/submitIssue.component';
 import { UsersComponent } from './components/users/users.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { ViewerComponent } from './components/viewer/viewer.component';
 import { AuthGuard } from './guards/auth.guard';
 import { AdminGuard } from './guards/admin.guard';
 import { BloggerGuard } from './guards/blogger.guard';
 import { StaffGuard } from './guards/staff.guard';
 
 const routes: Routes = [
-  { path: 'articles', component: ArticlesComponent },
-
   {
     path: 'issues', component: IssuesComponent,
     canActivate: [AuthGuard, StaffGuard],
@@ -26,12 +25,6 @@ const routes: Routes = [
     path: 'users', component: UsersComponent,
     canActivate: [AuthGuard, AdminGuard],
   },
-
-  { path: 'submitIssue', component: SubmitIssueComponent },
-
-  { path: 'register', component: RegisterComponent },
-
-  { path: 'login', component: LoginComponent },
 
   {
     path: 'editor', component: EditorComponent,
@@ -43,6 +36,11 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
 
+  { path: 'submitIssue', component: SubmitIssueComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'articles', component: ArticlesComponent },
+  { path: 'article', component: ViewerComponent },
   { path: '', component: HomeComponent }
 ];
 
