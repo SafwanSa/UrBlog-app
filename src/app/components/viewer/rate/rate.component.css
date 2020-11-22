@@ -1,0 +1,18 @@
+.rating {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+}
+ngb-rating {
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.star {
+  font-size: 3rem;
+  color: #c5c5c5;
+}
+.filled {
+  color: #f8da43;
+}

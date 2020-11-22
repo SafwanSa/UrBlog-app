@@ -44,3 +44,16 @@
   font-stretch: expanded;
   line-height: 2.3rem;
 }
+.rating {
+  display: flex;
+  justify-content: space-between;
+  justify-items: center;
+  margin: 1rem 0;
+}
+.star {
+  font-size: 1.5rem;
+  color: #c5c5c5;
+}
+.filled {
+  color: #f8da43;
+}

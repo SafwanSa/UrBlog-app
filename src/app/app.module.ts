@@ -23,6 +23,7 @@ import { IssueCardComponent } from './components/issues/issueCard/issueCard.comp
 import { UserCardComponent } from './components/users/userCard/userCard.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ViewerComponent } from './components/viewer/viewer.component';
+import { RateComponent } from './components/viewer/rate/rate.component';
 
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCardModule } from '@angular/material/card';
@@ -35,6 +36,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 // Get firebase credentials
@@ -58,7 +60,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ProfileComponent,
     IssueCardComponent,
     UserCardComponent,
-    ViewerComponent
+    ViewerComponent,
+    RateComponent
   ],
   imports: [
     MatCardModule,
@@ -75,6 +78,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatIconModule,
     MatRadioModule,
     MatGridListModule,
+    MatDialogModule,
     // 3. Initialize
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule, // firestore
