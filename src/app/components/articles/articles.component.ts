@@ -43,9 +43,28 @@ export class ArticlesComponent implements OnInit {
 
   onSearch(): void {
     this.filteredArticles = this.articles.filter(article => {
+      const articleCopy = new Article(
+        article.id,
+        article.title,
+        article.description,
+        article.content,
+        article.date,
+        article.rating,
+        article.uid,
+        article.tag
+      );
+
       if (this.searchText.value === '') { return true; }
-      return (article.description.split(' ').includes(this.searchText.value) ||
-        article.title.split(' ').includes(this.searchText.value)) && this.selectedTag === article.tag || this.selectedTag === '';
+      articleCopy.title = articleCopy.title.toLowerCase();
+      articleCopy.description = articleCopy.description.toLowerCase();
+      this.searchText.value = this.searchText.value.toLowerCase();
+      if (this.selectedTag === '') {
+        return (articleCopy.description.split(' ').includes(this.searchText.value) ||
+          articleCopy.title.split(' ').includes(this.searchText.value));
+      } else {
+        return (articleCopy.description.split(' ').includes(this.searchText.value) ||
+          articleCopy.title.split(' ').includes(this.searchText.value)) && (this.selectedTag === articleCopy.tag);
+      }
     }
     );
   }
