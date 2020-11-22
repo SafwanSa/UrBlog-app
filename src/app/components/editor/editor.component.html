@@ -2,7 +2,7 @@
   <form [formGroup]="form" class="article-info" (ngSubmit)="onSubmit()">
     <div class="action">
       <button id="add-btn" type="submit">Publish</button>
-      <button id="discard-btn" (click)="discard()">Discard</button>
+      <button id="delete-btn" (click)="delete()">Delete</button>
     </div>
     <input id="title" formControlName="title" type="text" placeholder="Title" />
 

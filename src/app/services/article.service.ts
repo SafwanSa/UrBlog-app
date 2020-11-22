@@ -41,6 +41,10 @@ export class ArticleService extends FireServiceBase<Article> {
   getUserArticles(uid): Observable<Article[]> {
     return this.firestore.col$<Article>('articles', ref => ref.where('uid', '==', uid));
   }
+  // This will be called by the writer only
+  deleteArticle(id): Promise<void> {
+    return this.firestore.delete(`articles/${id}`);
+  }
   isWriter(article): Observable<boolean> {
     return this.authService.user$.pipe(map(user => {
       if (user) { return user.uid === article.uid; }

@@ -1,8 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/services/auth.service';
-import { Article, ArticleService } from '../../../services/article.service';
-import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { Article } from '../../../services/article.service';
 
 @Component({
   selector: 'app-article',
@@ -14,7 +11,7 @@ export class ArticleComponent implements OnInit {
   @Input() article: Article;
   @Input() isWriter: boolean;
 
-  constructor(private articleService: ArticleService) { }
+  constructor() { }
 
   ngOnInit(): void {
   }

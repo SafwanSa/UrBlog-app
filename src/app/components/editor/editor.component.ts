@@ -79,7 +79,12 @@ export class EditorComponent implements OnInit {
     });
   }
 
-  discard(): void {
+  delete(): void {
+    if (this.article) {
+      this.articleService.deleteArticle(this.article.id).then(() => {
+        this.router.navigateByUrl('/articles');
+      });
+    }
     this.router.navigateByUrl('/articles');
   }
 
