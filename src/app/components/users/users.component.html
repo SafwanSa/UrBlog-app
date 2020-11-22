@@ -9,15 +9,18 @@
 
     <form [formGroup]="form">
       <input
-        formControlName="search"
+        formControlName="searchText"
         type="text"
         placeholder="e.g. Abdulelah Hajjar"
       />
-      <button>Search</button>
+      <button (click)="onSearch()">Search</button>
     </form>
   </div>
 
   <div class="users-container">
-    <app-user-card *ngFor="let user of users" [user]="user"></app-user-card>
+    <app-user-card
+      *ngFor="let user of filteredUsers"
+      [user]="user"
+    ></app-user-card>
   </div>
 </div>

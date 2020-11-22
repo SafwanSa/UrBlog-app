@@ -13,16 +13,16 @@
     <form [formGroup]="form">
       <input
         type="text"
-        formControlName="search"
+        formControlName="searchText"
         placeholder="e.g. best practices"
       />
-      <button>Search</button>
+      <button (click)="onSearch()">Search</button>
     </form>
   </div>
 
   <div class="articles-container">
     <app-article
-      *ngFor="let article of articles; let i = index"
+      *ngFor="let article of filteredArticles; let i = index"
       [article]="article"
       [isWriter]="isWriter[i]"
     ></app-article>
