@@ -19,8 +19,7 @@
       mat-raised-button
       class="abtn"
       color="primary"
-      routerLink="/article"
-      [queryParams]="{ id: article.id }"
+      [routerLink]="['/article', article.id]"
     >
       Read
     </button>
@@ -29,8 +28,7 @@
       mat-raised-button
       class="abtn"
       color="accent"
-      routerLink="/editor"
-      [queryParams]="{ id: article.id }"
+      [routerLink]="['/editor', article.id]"
     >
       Edit
     </button>

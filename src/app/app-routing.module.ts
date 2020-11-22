@@ -32,6 +32,12 @@ const routes: Routes = [
   },
 
   {
+    path: 'editor/:id', component: EditorComponent,
+    canActivate: [AuthGuard, BloggerGuard],
+  },
+
+
+  {
     path: 'profile', component: ProfileComponent,
     canActivate: [AuthGuard],
   },
@@ -40,7 +46,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'articles', component: ArticlesComponent },
-  { path: 'article', component: ViewerComponent },
+  { path: 'article/:id', component: ViewerComponent },
   { path: '', component: HomeComponent }
 ];
 

@@ -14,7 +14,7 @@ export class ViewerComponent implements OnInit {
   constructor(private route: ActivatedRoute, private articleService: ArticleService, ) { }
 
   ngOnInit(): void {
-    const id = this.route.snapshot.queryParamMap.get('id');
+    const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.articleService.get$(id).subscribe(article => {
         this.article = article;

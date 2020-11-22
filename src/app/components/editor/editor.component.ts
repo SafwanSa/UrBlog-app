@@ -35,7 +35,7 @@ export class EditorComponent implements OnInit {
   }
 
   lockForArticle(): void {
-    const id = this.route.snapshot.queryParamMap.get('id');
+    const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.articleService.get$(id).subscribe(article => {
         this.article = article;
