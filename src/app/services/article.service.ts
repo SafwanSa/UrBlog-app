@@ -30,7 +30,7 @@ export class ArticleService extends FireServiceBase<Article> {
     ));
   }
   // This going to be called by every authenticated user
-  saveArticle(article): Promise<void> {
+  saveArticle(article: Article): Promise<void> {
     return this.save(article);
   }
   // This going to be called by every user
@@ -38,11 +38,11 @@ export class ArticleService extends FireServiceBase<Article> {
     return this.getAll$();
   }
   // This going to be called by every user profile
-  getUserArticles(uid): Observable<Article[]> {
+  getUserArticles(uid: string): Observable<Article[]> {
     return this.firestore.col$<Article>('articles', ref => ref.where('uid', '==', uid));
   }
   // This will be called by the writer only
-  deleteArticle(id): Promise<void> {
+  deleteArticle(id: string): Promise<void> {
     return this.firestore.delete(`articles/${id}`);
   }
   isWriter(article): Observable<boolean> {
