@@ -81,7 +81,7 @@ export class RegisterComponent implements OnInit {
         this.lastName.value,
         result.user.email,
         Role.Blogger
-      )).then(() => this.router.navigateByUrl('/profile'));
+      )).then(() => this.router.navigate(['/profile', result.user.uid]));
     }
     this.loading = false;
   }
