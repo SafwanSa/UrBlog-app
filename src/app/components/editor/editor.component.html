@@ -1,4 +1,4 @@
-<div class="root-container">
+<!-- <div class="root-container">
   <form [formGroup]="form" class="article-info" (ngSubmit)="onSubmit()">
     <div class="action">
       <button id="add-btn" type="submit">Publish</button>
@@ -68,5 +68,85 @@
     >
       <div *ngIf="content.errors.required">Content is required.</div>
     </div>
+  </form>
+</div> -->
+
+<div class="root-container">
+  <form [formGroup]="form">
+    <mat-card>
+      <div class="action">
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="title.invalid || description.invalid || content.invalid"
+        >
+          Publish
+        </button>
+        <button mat-raised-button color="warn" (click)="delete()">
+          {{ !!article ? "Delete" : "Discard" }}
+        </button>
+      </div>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Select an option</mat-label>
+        <mat-select formControlName="tag">
+          <mat-option>None</mat-option>
+          <mat-option value="pl">Programming languages</mat-option>
+          <mat-option value="frameworks">Frameworks</mat-option>
+          <mat-option value="ai">AI</mat-option>
+          <mat-option value="backend">Backend</mat-option>
+          <mat-option value="frontend">Frontend</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <img
+        *ngIf="!!article && !!!imageUrl"
+        [src]="article.image"
+        width="400px"
+        alt=""
+      />
+      <img *ngIf="!!imageUrl" [src]="imageUrl" width="400px" alt="" />
+
+      <div class="image-uploader">
+        <input
+          type="file"
+          id="file"
+          #userPhoto
+          (change)="onFileSelected($event)"
+          name="image"
+          autocomplete="off"
+        />
+      </div>
+
+      <div class="title">
+        <mat-form-field appearance="legacy">
+          <mat-label>Title</mat-label>
+          <input matInput autocomplete="off" formControlName="title" required />
+          <mat-error *ngIf="title.invalid">{{ getErrorMessage() }}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="description">
+        <mat-form-field appearance="legacy">
+          <mat-label>Description</mat-label>
+          <input
+            matInput
+            autocomplete="off"
+            formControlName="description"
+            required
+          />
+          <mat-error *ngIf="description.invalid">{{
+            getErrorMessage()
+          }}</mat-error>
+        </mat-form-field>
+      </div>
+    </mat-card>
+
+    <quill-editor
+      class="editor"
+      formControlName="content"
+      required
+    ></quill-editor>
   </form>
 </div>

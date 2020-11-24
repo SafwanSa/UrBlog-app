@@ -6,7 +6,6 @@ import { Article, ArticleService } from 'src/app/services/article.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize, map } from 'rxjs/operators';
-import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-editor',
@@ -17,9 +16,7 @@ export class EditorComponent implements OnInit {
 
   form: FormGroup;
   isProcessing = true;
-  contentString: string;
   article: Article;
-  selected: string;
 
   selectedFile: File = null;
   imageUrl;
@@ -38,7 +35,8 @@ export class EditorComponent implements OnInit {
     this.form = this.fb.group({
       title: ['', Validators.required],
       description: ['', Validators.required],
-      content: ['', Validators.required]
+      content: ['', Validators.required],
+      tag: ['']
     });
     this.lockForArticle();
   }
@@ -52,7 +50,7 @@ export class EditorComponent implements OnInit {
           this.title.setValue(this.article.title);
           this.description.setValue(this.article.description);
           this.content.setValue(this.article.content);
-          this.selected = this.article.tag;
+          this.tag.setValue(this.article.tag);
         }
       });
     }
@@ -70,6 +68,18 @@ export class EditorComponent implements OnInit {
     return this.form.get('content');
   }
 
+  get tag(): any {
+    return this.form.get('tag');
+  }
+
+  getErrorMessage(): string {
+    if (this.title.hasError('required')
+      || this.description.hasError('required')
+      || this.content.hasError('required')) {
+      return 'Please enter the value';
+    }
+  }
+
   onSubmit(): void {
     this.isProcessing = true;
 
@@ -79,11 +89,11 @@ export class EditorComponent implements OnInit {
         this.article ? this.article.id : `${user.uid}-${t.getTime()}`,
         this.title.value,
         this.description.value,
-        this.contentString,
+        this.content.value,
         this.article ? this.article.date : new Date(),
         this.article ? this.article.rating : 0,
         user.uid,
-        this.selected,
+        this.tag.value,
         !!this.imageUrl ? this.imageUrl : this.article.image
       )).then(_ => {
         this.isProcessing = false;
