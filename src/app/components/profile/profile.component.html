@@ -1,22 +1,26 @@
-<div class="root-container">
+<div *ngIf="userAndArticles$ | async as user" class="root-container">
   <div class="profile-card">
     <div class="image">
       <img src="../../assets/images/b.jpg" alt="" />
     </div>
 
-    <p id="email">{{ user.email }}</p>
+    <p id="email">{{ user[0].email }}</p>
 
-    <label for="">{{ user.firstName }}</label>
-    <label for="">{{ user.lastName }}</label>
+    <label for="">{{ user[0].firstName }}</label>
+    <label for="">{{ user[0].lastName }}</label>
   </div>
 
-  <div class="articles" *ngIf="user.role === 'blogger'">
+  <div
+    class="articles"
+    *ngIf="user[0].role === 'blogger' || user[0].role === 'admin'"
+  >
     <p id="title">Articles</p>
     <app-article
-      *ngFor="let article of articles"
+      *ngFor="let article of user[1]"
       [article]="article"
+      [isWriter]="true"
     ></app-article>
-    <p *ngIf="!isProcessing && articles.length === 0">
+    <p *ngIf="!isProcessing && user[1].length === 0">
       You do not have any articles yet :(
     </p>
   </div>

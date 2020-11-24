@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { combineLatest, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Article, ArticleService } from 'src/app/services/article.service';
 import { FirestoreService } from 'src/app/services/firestore/firestore.service';
 import { User, UserService } from 'src/app/services/user.service';
@@ -10,25 +13,28 @@ import { User, UserService } from 'src/app/services/user.service';
 })
 export class ProfileComponent implements OnInit {
 
-  user: User = new User();
-  articles: Article[];
+  userAndArticles$: Observable<any>;
   isProcessing = true;
 
-  constructor(private userService: UserService, private articleService: ArticleService, private fr: FirestoreService) { }
+  constructor(
+    private userService: UserService,
+    private articleService: ArticleService,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
     this.isProcessing = true;
-    this.userService.retrieveCurrentUser().subscribe(user => {
-      if (!user) {
-        return;
-      }
-      this.user = user;
-      this.fr.col$<Article>('articles', (ref) => ref.where('uid', '==', user.uid))
-        .subscribe(articles => {
-          this.articles = articles;
-          this.isProcessing = false;
-        });
-    });
+
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id) {
+      const articles$ = this.articleService.getAll$()
+        .pipe(map(articles => articles.filter(article => article.uid === id)));
+
+      this.userAndArticles$ = combineLatest([this.userService.get$(id), articles$]);
+
+    } else {
+      console.log('No id. This should not happend.');
+    }
   }
 
 }

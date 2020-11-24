@@ -22,7 +22,7 @@
   </div>
 
   <div class="right-side" *ngIf="user && !isProcessing">
-    <p>{{ user.uid }}</p>
+    <a [routerLink]="['profile', user.uid]">Profile</a>
     <button class="btn btn-danger" (click)="signOut()">Logout</button>
   </div>
 </header>
