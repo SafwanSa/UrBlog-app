@@ -1,9 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { combineLatest, Observable, Subscriber } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { combineLatest, Observable, Subscriber, Subscription } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 import { Article, ArticleService } from 'src/app/services/article.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { FirestoreService } from 'src/app/services/firestore/firestore.service';
 import { User, UserService, Role } from 'src/app/services/user.service';
 
@@ -15,16 +16,19 @@ import { User, UserService, Role } from 'src/app/services/user.service';
 export class ProfileComponent implements OnInit {
 
   userAndArticles$: Observable<any>;
+  subs: Subscription;
   isProcessing = true;
   form: FormGroup;
   isUserController = false;
   isEditingProfile = false;
+  user: User;
 
 
 
   constructor(
     private userService: UserService,
     private articleService: ArticleService,
+    private authService: AuthService,
     private route: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder
@@ -44,16 +48,19 @@ export class ProfileComponent implements OnInit {
         .pipe(map(articles => articles.filter(article => article.uid === id)));
 
       this.userAndArticles$ = combineLatest([this.userService.get$(id), articles$]);
-      this.userAndArticles$.subscribe(user => {
-        if (user[0].uid !== id && user[0].role !== Role.Admin) {
-          this.router.navigateByUrl(`/profile/${user[0].uid}`);
-        }
-        this.firstName.setValue(user[0].firstName);
-        this.lastName.setValue(user[0].lastName);
-        this.email.setValue(user[0].email);
-        if (user[0].uid === id) { this.isUserController = true; }
+      this.authService.user$.subscribe(authUser => {
+        this.subs = this.userAndArticles$.subscribe(user => {
+          if (authUser.uid !== id && user.role !== Role.Admin) {
+            this.router.navigateByUrl(`/profile/${authUser.uid}`);
+          }
 
-        this.isProcessing = false;
+          this.firstName.setValue(user[0].firstName);
+          this.lastName.setValue(user[0].lastName);
+          this.email.setValue(user[0].email);
+          if (authUser.uid === id) { this.isUserController = true; this.user = user[0]; }
+
+          this.isProcessing = false;
+        });
       });
     } else {
       console.log('No id. This should not happened.');
@@ -82,20 +89,24 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  onSave(): void {
+  async onSave(): Promise<void> {
+    this.subs.unsubscribe();
     this.isEditingProfile = !this.isEditingProfile;
     const newf = this.firstName.value;
     const newl = this.lastName.value;
 
-    if (newf !== '' && newl !== '') {
-      this.userAndArticles$.subscribe(user => {
-        user[0].firstName = newf;
-        user[0].lastName = newl;
-        this.userService.save(user[0]);
-      });
+
+
+    if (newf !== '' && newl !== '' && !this.isEditingProfile) {
+      this.user.firstName = this.firstName.value;
+      this.user.lastName = this.lastName.value;
+      this.userService.save(this.user);
     }
   }
 
 
 
 }
+
+
+
