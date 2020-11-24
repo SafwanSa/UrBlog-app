@@ -2,7 +2,22 @@
   <mat-card>
     <mat-card-content>
       <div class="left-side">
-        <div class="img"></div>
+        <img
+          class="img"
+          [src]="!!!imageUrl ? '../../../assets/images/b.jpg' : imageUrl"
+          alt=""
+        />
+
+        <img class="upload-btn" (click)="fileInput.click()" />
+        <input
+          [disabled]="!isEditingProfile"
+          #fileInput
+          type="file"
+          (change)="onFileSelected($event)"
+          style="display: none"
+          name="image"
+        />
+
         <button
           type="submit"
           *ngIf="isUserController"

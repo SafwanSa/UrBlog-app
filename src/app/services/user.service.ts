@@ -60,7 +60,8 @@ export class User extends FireModelBase {
     public lastName: string = '',
     public email: string = '',
     public isBlocked: boolean = false,
-    public role: string = ''
+    public role: string = '',
+    public photo: string = ''
   ) {
     super();
   }

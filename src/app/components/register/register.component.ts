@@ -77,10 +77,13 @@ export class RegisterComponent implements OnInit {
     if (result.user) {
       this.userService.saveUser(new User(
         result.user.uid,
+        result.user.uid,
         this.firstName.value,
         this.lastName.value,
         result.user.email,
-        Role.Blogger
+        false,
+        Role.Blogger,
+        ''
       )).then(() => this.router.navigate(['/profile', result.user.uid]));
     }
     this.loading = false;
