@@ -1,76 +1,3 @@
-<!-- <div class="root-container">
-  <form [formGroup]="form" class="article-info" (ngSubmit)="onSubmit()">
-    <div class="action">
-      <button id="add-btn" type="submit">Publish</button>
-      <button id="delete-btn" (click)="delete()">Delete</button>
-    </div>
-
-    <mat-form-field appearance="fill">
-      <mat-label>Select an option</mat-label>
-      <mat-select [(value)]="selected">
-        <mat-option>None</mat-option>
-        <mat-option value="pl">Programming languages</mat-option>
-        <mat-option value="frameworks">Frameworks</mat-option>
-        <mat-option value="ai">AI</mat-option>
-        <mat-option value="backend">Backend</mat-option>
-        <mat-option value="frontend">Frontend</mat-option>
-      </mat-select>
-    </mat-form-field>
-
-    <img
-      *ngIf="!!article && !!!imageUrl"
-      [src]="article.image"
-      width="400px"
-      alt=""
-    />
-    <img *ngIf="!!imageUrl" [src]="imageUrl" width="400px" alt="" />
-
-    <div class="form-group col-3">
-      <input
-        type="file"
-        id="file"
-        #userPhoto
-        (change)="onFileSelected($event)"
-        name="image"
-        autocomplete="off"
-      />
-    </div>
-
-    <input id="title" formControlName="title" type="text" placeholder="Title" />
-    <div
-      class="alert alert-danger"
-      *ngIf="title.invalid && (title.dirty || title.touched)"
-    >
-      <div *ngIf="title.errors.required">Title is required.</div>
-    </div>
-    <input
-      id="description"
-      formControlName="description"
-      type="text"
-      placeholder="Description"
-    />
-    <div
-      class="alert alert-danger"
-      *ngIf="description.invalid && (description.dirty || description.touched)"
-    >
-      <div *ngIf="description.errors.required">Description is required.</div>
-    </div>
-
-    <quill-editor
-      class="editor"
-      formControlName="content"
-      (onContentChanged)="contentString = $event.text"
-      required
-    ></quill-editor>
-    <div
-      class="alert alert-danger"
-      *ngIf="content.invalid && (content.dirty || content.touched)"
-    >
-      <div *ngIf="content.errors.required">Content is required.</div>
-    </div>
-  </form>
-</div> -->
-
 <div class="root-container">
   <form [formGroup]="form">
     <mat-card>
@@ -97,6 +24,7 @@
           <mat-option value="ai">AI</mat-option>
           <mat-option value="backend">Backend</mat-option>
           <mat-option value="frontend">Frontend</mat-option>
+          <mat-option value="other">Other</mat-option>
         </mat-select>
       </mat-form-field>
 

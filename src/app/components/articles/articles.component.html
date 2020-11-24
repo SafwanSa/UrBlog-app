@@ -33,6 +33,11 @@
         [class]="selectedTag === 'frontend' ? 'active' : 'inactive'"
         >Frontend</a
       >
+      <a
+        (click)="selectedTag = 'other'"
+        [class]="selectedTag === 'other' ? 'active' : 'inactive'"
+        >Frontend</a
+      >
     </div>
 
     <form [formGroup]="form">
