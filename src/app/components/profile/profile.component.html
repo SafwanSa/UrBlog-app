@@ -1,14 +1,71 @@
 <div *ngIf="userAndArticles$ | async as user" class="root-container">
-  <div class="profile-card">
-    <div class="image">
-      <img src="../../assets/images/b.jpg" alt="" />
-    </div>
+  <mat-card>
+    <mat-card-content>
+      <div class="left-side">
+        <div class="img"></div>
+        <button
+          type="submit"
+          *ngIf="isUserController"
+          mat-raised-button
+          [color]="isEditingProfile ? 'accent' : 'primary'"
+          (click)="onSave()"
+        >
+          {{ isEditingProfile ? "Save" : "Edit Profile" }}
+        </button>
+      </div>
 
-    <p id="email">{{ user[0].email }}</p>
+      <form class="right-side" [formGroup]="form">
+        <div class="firstName">
+          <mat-form-field
+            [appearance]="isEditingProfile ? 'fill' : 'legacy'"
+            color="primary"
+          >
+            <mat-label>First Name</mat-label>
+            <input
+              [readonly]="!isEditingProfile"
+              matInput
+              formControlName="firstName"
+              autocomplete="off"
+            />
+            <mat-error *ngIf="firstName.invalid">{{
+              getErrorMessage()
+            }}</mat-error>
+          </mat-form-field>
+        </div>
 
-    <label for="">{{ user[0].firstName }}</label>
-    <label for="">{{ user[0].lastName }}</label>
-  </div>
+        <div class="lastName">
+          <mat-form-field
+            [appearance]="isEditingProfile ? 'fill' : 'legacy'"
+            color="primary"
+          >
+            <mat-label>Last Name</mat-label>
+            <input
+              [readonly]="!isEditingProfile"
+              matInput
+              formControlName="lastName"
+              autocomplete="off"
+            />
+            <mat-error *ngIf="lastName.invalid">{{
+              getErrorMessage()
+            }}</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="email">
+          <mat-form-field appearance="legacy" color="primary">
+            <mat-label>Email</mat-label>
+            <input
+              [readonly]="true"
+              type="email"
+              matInput
+              formControlName="email"
+              autocomplete="off"
+            />
+          </mat-form-field>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
 
   <div
     class="articles"
