@@ -52,6 +52,7 @@ export class EditorComponent implements OnInit {
           this.title.setValue(this.article.title);
           this.description.setValue(this.article.description);
           this.content.setValue(this.article.content);
+          this.selected = this.article.tag;
         }
       });
     }
@@ -75,17 +76,18 @@ export class EditorComponent implements OnInit {
     this.authService.user$.subscribe(user => {
       const t = new Date();
       this.articleService.save(new Article(
-        `${user.uid}-${t.getTime()}`,
+        this.article ? this.article.id : `${user.uid}-${t.getTime()}`,
         this.title.value,
         this.description.value,
         this.contentString,
-        new Date(),
-        0,
+        this.article ? this.article.date : new Date(),
+        this.article ? this.article.rating : 0,
         user.uid,
         this.selected,
-        this.imageUrl
+        !!this.imageUrl ? this.imageUrl : this.article.image
       )).then(_ => {
         this.isProcessing = false;
+        this.router.navigateByUrl(`article/${this.article ? this.article.id : `${user.uid}-${t.getTime()}`}`);
       });
     });
   }
@@ -117,7 +119,7 @@ export class EditorComponent implements OnInit {
               }
             });
           })
-        );
+        ).subscribe();
     });
   }
 }

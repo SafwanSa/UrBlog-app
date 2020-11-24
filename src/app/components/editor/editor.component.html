@@ -17,6 +17,14 @@
       </mat-select>
     </mat-form-field>
 
+    <img
+      *ngIf="!!article && !!!imageUrl"
+      [src]="article.image"
+      width="400px"
+      alt=""
+    />
+    <img *ngIf="!!imageUrl" [src]="imageUrl" width="400px" alt="" />
+
     <div class="form-group col-3">
       <input
         type="file"
