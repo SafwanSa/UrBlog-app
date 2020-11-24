@@ -41,3 +41,19 @@ mat-form-field {
 .image-uploader {
   background-color: green;
 }
+
+.img-container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+ngb-progress {
+  width: 70%;
+}
+
+.upload-btn {
+  width: 30%;
+  text-align: center;
+  margin-top: 1rem;
+}

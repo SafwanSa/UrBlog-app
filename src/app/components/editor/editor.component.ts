@@ -19,8 +19,10 @@ export class EditorComponent implements OnInit {
   article: Article;
 
   selectedFile: File = null;
-  imageUrl;
+  imageUrl: string;
   downloadURL: Observable<string>;
+  uploadProgress$: Observable<number>;
+
 
   constructor(
     private fb: FormBuilder,
@@ -111,13 +113,17 @@ export class EditorComponent implements OnInit {
     this.router.navigateByUrl('/articles');
   }
 
-  onFileSelected(event): void {
+  onFileSelected(event: any): void {
     this.authService.user$.subscribe(user => {
       const n = Date.now();
       const file = event.target.files[0];
       const filePath = `articleImages/${user.uid}-${n}`;
       const fileRef = this.storage.ref(filePath);
       const task = this.storage.upload(filePath, file);
+
+      this.uploadProgress$ = task.percentageChanges();
+      console.log('d');
+
       task
         .snapshotChanges()
         .pipe(

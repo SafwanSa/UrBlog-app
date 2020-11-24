@@ -1,5 +1,5 @@
 <div class="root-container">
-  <form [formGroup]="form">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <mat-card>
       <div class="action">
         <button
@@ -28,23 +28,40 @@
         </mat-select>
       </mat-form-field>
 
-      <img
-        *ngIf="!!article && !!!imageUrl"
-        [src]="article.image"
-        width="400px"
-        alt=""
-      />
-      <img *ngIf="!!imageUrl" [src]="imageUrl" width="400px" alt="" />
-
-      <div class="image-uploader">
-        <input
-          type="file"
-          id="file"
-          #userPhoto
-          (change)="onFileSelected($event)"
-          name="image"
-          autocomplete="off"
+      <div class="img-container">
+        <img
+          *ngIf="!!article && !!!imageUrl && !(uploadProgress$ | async)"
+          [src]="article.image"
+          width="400px"
+          alt=""
         />
+        <img
+          *ngIf="!!imageUrl && !(uploadProgress$ | async)"
+          [src]="imageUrl"
+          width="400px"
+          alt=""
+        />
+
+        <ngb-progressbar
+          *ngIf="uploadProgress$ | async"
+          [value]="uploadProgress$ | async"
+        ></ngb-progressbar>
+        <button
+          class="upload-btn"
+          mat-raised-button
+          color="accent"
+          type="button"
+          (click)="fileInput.click()"
+        >
+          <span>Upload an image</span>
+          <input
+            #fileInput
+            type="file"
+            (change)="onFileSelected($event)"
+            style="display: none"
+            name="image"
+          />
+        </button>
       </div>
 
       <div class="title">
