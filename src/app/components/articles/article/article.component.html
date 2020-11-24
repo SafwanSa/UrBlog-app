@@ -1,4 +1,4 @@
-<div class="myCard">
+<!-- <div class="myCard">
   <img
     [src]="article.image ? article.image : '../../../../assets/images/css.jpg'"
     width="200px"
@@ -33,4 +33,26 @@
       Edit
     </button>
   </div>
-</div>
+</div> -->
+
+<mat-card>
+  <img
+    class="f-row"
+    [src]="article.image ? article.image : '../../../../assets/images/css.jpg'"
+    alt=""
+  />
+  <p class="s-row">{{ article.title }}</p>
+  <div class="t-row">
+    <p class="article-tag">
+      Added to <span>{{ article.tag }}</span>
+    </p>
+    <p class="date">December 8, 2020</p>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="fo-row">
+    <p class="blogger-name">
+      <img class="blogger-photo" src="../../../assets/images/b.jpg" alt="" />
+      BY <b>Safwan Saigh</b>
+    </p>
+  </div>
+</mat-card>

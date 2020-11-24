@@ -1,5 +1,4 @@
-<a routerLink="/editor" id="addArticle">Add Article</a>
-<div class="root-container">
+<!-- <div class="root-container">
   <div class="config-container">
     <p id="title">Articles</p>
     <div class="sections">
@@ -49,12 +48,30 @@
       <button (click)="onSearch()">Search</button>
     </form>
   </div>
+</div> -->
+<div class="search">
+  <form [formGroup]="form">
+    <mat-form-field appearance="legacy">
+      <mat-label>Select</mat-label>
+      <mat-select>
+        <mat-option value="option">Option</mat-option>
+      </mat-select>
+    </mat-form-field>
 
-  <div class="articles-container">
-    <app-article
+    <mat-form-field>
+      <input matInput type="search" />
+    </mat-form-field>
+  </form>
+</div>
+
+<a routerLink="/editor" id="addArticle">Add Article</a>
+<div class="container mt-4">
+  <div class="row">
+    <div
       *ngFor="let article of filteredArticles; let i = index"
-      [article]="article"
-      [isWriter]="isWriter[i]"
-    ></app-article>
+      class="col-auto mb-3"
+    >
+      <app-article [article]="article" [isWriter]="isWriter[i]"></app-article>
+    </div>
   </div>
 </div>

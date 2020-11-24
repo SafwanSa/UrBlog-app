@@ -1,4 +1,4 @@
-.myCard {
+/* .myCard {
   display: flex;
   position: relative;
   width: 100%;
@@ -53,4 +53,48 @@
   height: 45%;
   left: 80%;
   animation: mymove 10s infinite;
+} */
+
+mat-card {
+  padding: 0;
+  width: 350px;
+  margin: 1rem 0rem;
+}
+
+img {
+  object-fit: cover;
+  width: 100%;
+  height: 200px;
+  border-radius: 5px 5px 0 0;
+}
+
+.s-row {
+  font-size: 24px;
+  font-weight: lighter;
+  padding: 1rem;
+  line-height: 2rem;
+}
+
+.t-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.t-row .article-tag span {
+  color: #344ba9;
+  font-weight: bold;
+}
+
+.fo-row {
+  padding-top: 0.5rem;
+  padding-bottom: 0.1rem;
+  padding-left: 1rem;
+}
+
+.blogger-photo {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  margin-right: 0.5rem;
 }
