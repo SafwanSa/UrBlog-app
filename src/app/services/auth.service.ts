@@ -6,7 +6,7 @@ import { first, map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 type Result = Promise<{
-  user?: firebase.User;
+  user?: firebase.default.User;
   error?: string;
 }>;
 
@@ -25,7 +25,7 @@ export class AuthService {
     return this.user$.pipe(map(user => !!user));
   }
 
-  user$: Observable<firebase.User>;
+  user$: Observable<firebase.default.User>;
 
   constructor(private afAuth: AngularFireAuth) {
     this.user$ = this.afAuth.authState;
@@ -59,7 +59,7 @@ export class AuthService {
       .catch(error => ({ error: error.message }));
   }
 
-  async sendEmailVerification(user: firebase.User): Result {
+  async sendEmailVerification(user: firebase.default.User): Result {
     return await user.sendEmailVerification()
       .then(() => ({}))
       .catch(error => ({ error: error.message }));

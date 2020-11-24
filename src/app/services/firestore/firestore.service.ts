@@ -47,8 +47,8 @@ export class FirestoreService {
   /// **************
 
   /// Firebase Server Timestamp
-  get timestamp(): firebase.firestore.FieldValue {
-    return firebase.firestore.FieldValue.serverTimestamp();
+  get timestamp(): firebase.default.firestore.FieldValue {
+    return firebase.default.firestore.FieldValue.serverTimestamp();
   }
 
   col<T>(ref: CollectionPredicate<T>, queryFn?: QueryFn): AngularFirestoreCollection<T> {
@@ -144,7 +144,7 @@ export class FirestoreService {
     return this.doc(ref).delete();
   }
 
-  add<T>(ref: CollectionPredicate<T>, data): Promise<firebase.firestore.DocumentReference> {
+  add<T>(ref: CollectionPredicate<T>, data): Promise<firebase.default.firestore.DocumentReference> {
     const timestamp = this.timestamp;
     return this.col(ref).add({
       ...data,
@@ -153,8 +153,8 @@ export class FirestoreService {
     });
   }
 
-  geopoint(lat: number, lng: number): firebase.firestore.GeoPoint {
-    return new firebase.firestore.GeoPoint(lat, lng);
+  geopoint(lat: number, lng: number): firebase.default.firestore.GeoPoint {
+    return new firebase.default.firestore.GeoPoint(lat, lng);
   }
 
   /// If doc exists update, otherwise set
@@ -215,7 +215,7 @@ export class FirestoreService {
     return this.doc$(ref).pipe(
       map((doc: T) => {
         for (const k of Object.keys(doc)) {
-          if (doc[k] instanceof firebase.firestore.DocumentReference) {
+          if (doc[k] instanceof firebase.default.firestore.DocumentReference) {
             doc[k] = this.doc(doc[k].path);
           }
         }
@@ -231,11 +231,11 @@ export class FirestoreService {
 
   /// Just an example, you will need to customize this method.
   atomic(): Promise<void> {
-    const batch = firebase.firestore().batch();
+    const batch = firebase.default.firestore().batch();
     /// add your operations here
 
-    const itemDoc = firebase.firestore().doc('items/myCoolItem');
-    const userDoc = firebase.firestore().doc('users/userId');
+    const itemDoc = firebase.default.firestore().doc('items/myCoolItem');
+    const userDoc = firebase.default.firestore().doc('users/userId');
 
     const currentTime = this.timestamp;
 
