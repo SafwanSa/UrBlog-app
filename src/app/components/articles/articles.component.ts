@@ -51,7 +51,8 @@ export class ArticlesComponent implements OnInit {
         article.date,
         article.rating,
         article.uid,
-        article.tag
+        article.tag,
+        ''
       );
 
       if (this.searchText.value === '') { return true; }

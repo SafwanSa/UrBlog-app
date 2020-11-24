@@ -17,6 +17,17 @@
       </mat-select>
     </mat-form-field>
 
+    <div class="form-group col-3">
+      <input
+        type="file"
+        id="file"
+        #userPhoto
+        (change)="onFileSelected($event)"
+        name="image"
+        autocomplete="off"
+      />
+    </div>
+
     <input id="title" formControlName="title" type="text" placeholder="Title" />
     <div
       class="alert alert-danger"

@@ -21,7 +21,10 @@
       <p id="author">Safwan Saigh (This should be dynamic)</p>
       <p id="date">{{ article.date }}</p>
     </div>
-    <img src="../../../assets/images/css.png" alt="" />
+    <img
+      [src]="article.image ? article.image : '../../../assets/images/css.png'"
+      alt=""
+    />
   </div>
 
   <p id="content">{{ article.content }}</p>
