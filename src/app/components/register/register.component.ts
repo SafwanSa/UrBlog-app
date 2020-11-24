@@ -15,6 +15,7 @@ export class RegisterComponent implements OnInit {
   form: FormGroup;
   loading = false;
   serverMessage = '';
+  hidePassword = true;
 
   constructor(
     private fb: FormBuilder,
@@ -48,13 +49,31 @@ export class RegisterComponent implements OnInit {
     return this.form.get('password');
   }
 
+  getErrorMessage(): string {
+    if (this.password.hasError('minlength')) {
+      return 'Password must be at least 6 characters';
+    }
+    else if (this.email.hasError('required')
+      || this.firstName.hasError('required')
+      || this.lastName.hasError('required')
+      || this.password.hasError('required')) {
+      return 'You must enter a value';
+    } else if (this.email.hasError('email')) {
+      return 'Not a valid email';
+    }
+  }
+
   async onSubmit(): Promise<void> {
     this.loading = true;
     const email = this.email.value;
     const password = this.password.value;
 
     const result = await this.authService.signUp(email, password);
-    if (result.error) { this.serverMessage = result.error; this.loading = false; return; }
+    if (result.error) {
+      this.serverMessage = result.error;
+      this.loading = false;
+      return;
+    }
     if (result.user) {
       this.userService.saveUser(new User(
         result.user.uid,
@@ -62,10 +81,8 @@ export class RegisterComponent implements OnInit {
         this.lastName.value,
         result.user.email,
         Role.Blogger
-      ));
-      this.router.navigateByUrl('/profile');
+      )).then(() => this.router.navigateByUrl('/profile'));
     }
-
     this.loading = false;
   }
 }

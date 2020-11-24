@@ -1,51 +1,56 @@
 <div class="root-container">
-  <form action="" [formGroup]="form" (ngSubmit)="onSubmit()">
-    <p id="title">Welcome</p>
+  <mat-card class="card">
+    <mat-card-title class="card-title">Welcome Back</mat-card-title>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="email">
+        <mat-form-field appearance="legacy">
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            placeholder="pat@example.com"
+            autocomplete="off"
+            formControlName="email"
+            required
+          />
+          <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>
+        </mat-form-field>
+      </div>
 
-    <div class="email">
-      <input
-        id="email"
-        formControlName="email"
-        type="email"
-        placeholder="Email"
-        required
-        autocomplete="off"
-      />
-    </div>
-
-    <div class="password">
-      <input
-        id="password"
-        formControlName="password"
-        type="password"
-        placeholder="Password"
-        required
-        autocomplete="off"
-      />
-    </div>
-
-    <p>Don't have an account? <a routerLink="/register">Register</a></p>
-
-    <button id="login-btn">Login</button>
-
-    <div
-      *ngIf="email.invalid && (email.dirty || email.touched)"
-      class="alert alert-danger"
-    >
-      <div *ngIf="email.errors.required">Email is required.</div>
-      <div *ngIf="email.errors.email">Enter a valid email.</div>
-    </div>
-
-    <div
-      *ngIf="password.invalid && (password.dirty || password.touched)"
-      class="alert alert-danger"
-    >
-      <div *ngIf="password.errors.required">Password is required.</div>
-      <div *ngIf="password.errors.minlength">Password must be at least 6.</div>
-    </div>
-
-    <div *ngIf="serverMessage !== ''" class="alert alert-danger">
-      <div>{{ serverMessage }}</div>
-    </div>
-  </form>
+      <div class="password">
+        <mat-form-field appearance="legacy">
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            formControlName="password"
+            autocomplete="off"
+            [type]="hidePassword ? 'password' : 'text'"
+          />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="hidePassword = !hidePassword"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hidePassword"
+          >
+            <mat-icon>{{
+              hidePassword ? "visibility_off" : "visibility"
+            }}</mat-icon>
+          </button>
+          <mat-error *ngIf="password.invalid">{{
+            getErrorMessage()
+          }}</mat-error>
+        </mat-form-field>
+      </div>
+      <mat-error *ngIf="serverMessage !== ''">{{ serverMessage }}</mat-error>
+      <button
+        type="submit"
+        mat-raised-button
+        color="primary"
+        [disabled]="email.invalid || password.invalid"
+      >
+        Login
+      </button>
+      <p>Don't have an account? <a routerLink="/register">Register</a></p>
+    </form>
+  </mat-card>
 </div>

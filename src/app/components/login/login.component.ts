@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
   form: FormGroup;
   loading = false;
   serverMessage = '';
+  hidePassword = true;
 
   constructor(
     private fb: FormBuilder,
@@ -35,6 +36,18 @@ export class LoginComponent implements OnInit {
     return this.form.get('password');
   }
 
+  getErrorMessage(): string {
+    if (this.password.hasError('minlength')) {
+      return 'Password must be at least 6 characters';
+    }
+    else if (this.email.hasError('required')
+      || this.password.hasError('required')) {
+      return 'You must enter a value';
+    } else if (this.email.hasError('email')) {
+      return 'Not a valid email';
+    }
+  }
+
 
   async onSubmit(): Promise<void> {
     this.loading = true;
@@ -43,7 +56,11 @@ export class LoginComponent implements OnInit {
     const password = this.password.value;
 
     const result = await this.authService.signIn(email, password);
-    if (result.error) { this.serverMessage = result.error; this.loading = false; return; }
+    if (result.error) {
+      this.serverMessage = result.error;
+      this.loading = false;
+      return;
+    }
     if (result.user) { this.router.navigateByUrl('/profile'); }
     this.loading = false;
   }

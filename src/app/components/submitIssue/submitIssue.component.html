@@ -1,4 +1,4 @@
-<div class="root-container">
+<!-- <div class="root-container">
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <p id="title">Have an Issue?</p>
 
@@ -20,4 +20,44 @@
 
     <button id="submit-btn" type="submit">Submit</button>
   </form>
+</div> -->
+<div class="root-container">
+  <mat-card class="card">
+    <mat-card-title class="card-title">Have an Issue?</mat-card-title>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="title">
+        <mat-form-field appearance="legacy">
+          <mat-label>Subject</mat-label>
+          <input matInput autocomplete="off" formControlName="title" required />
+          <mat-error *ngIf="title.invalid">{{ getErrorMessage() }}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Description</mat-label>
+        <textarea
+          matInput
+          autocomplete="off"
+          formControlName="description"
+          cols="40"
+          rows="10"
+          required
+        >
+        </textarea>
+        <mat-error *ngIf="description.invalid">{{
+          getErrorMessage()
+        }}</mat-error>
+      </mat-form-field>
+
+      <mat-error *ngIf="serverMessage !== ''">{{ serverMessage }}</mat-error>
+      <button
+        type="submit"
+        mat-raised-button
+        color="primary"
+        [disabled]="title.invalid || description.invalid"
+      >
+        Submit
+      </button>
+    </form>
+  </mat-card>
 </div>

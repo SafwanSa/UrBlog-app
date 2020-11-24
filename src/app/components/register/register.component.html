@@ -1,85 +1,77 @@
 <div class="root-container">
-  <form action="" [formGroup]="form" (ngSubmit)="onSubmit()">
-    <p id="title">Create an Account</p>
+  <mat-card class="card">
+    <mat-card-title class="card-title">Create an account</mat-card-title>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="firstName">
+        <mat-form-field appearance="legacy" color="primary">
+          <mat-label>First Name</mat-label>
+          <input matInput formControlName="firstName" autocomplete="off" />
+          <mat-error *ngIf="firstName.invalid">{{
+            getErrorMessage()
+          }}</mat-error>
+        </mat-form-field>
+      </div>
 
-    <div class="name">
-      <input
-        id="fname"
-        placeholder="First Name"
-        formControlName="firstName"
-        type="text"
-        required
-        autocomplete="off"
-        required
-      />
-      <input
-        id="lname"
-        placeholder="Last Name"
-        formControlName="lastName"
-        type="text"
-        required
-        autocomplete="off"
-        required
-      />
-    </div>
+      <mat-form-field appearance="legacy" color="primary">
+        <mat-label>Last Name</mat-label>
+        <input matInput formControlName="lastName" autocomplete="off" />
+        <mat-error *ngIf="lastName.invalid">{{ getErrorMessage() }}</mat-error>
+      </mat-form-field>
 
-    <div class="email">
-      <input
-        id="email"
-        formControlName="email"
-        type="email"
-        placeholder="Email"
-        autocomplete="off"
-        required
-      />
-    </div>
+      <div class="email">
+        <mat-form-field appearance="legacy">
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            placeholder="pat@example.com"
+            autocomplete="off"
+            formControlName="email"
+            required
+          />
+          <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>
+        </mat-form-field>
+      </div>
 
-    <div class="password">
-      <input
-        id="password"
-        formControlName="password"
-        type="password"
-        placeholder="Password"
-        required
-      />
-    </div>
-
-    <p>Already have an account? <a routerLink="/login">Login</a></p>
-
-    <button id="register-btn" type="submit">Register</button>
-
-    <div
-      *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
-      class="alert alert-danger"
-    >
-      <div *ngIf="firstName.errors.required">First name is required.</div>
-    </div>
-
-    <div
-      *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)"
-      class="alert alert-danger"
-    >
-      <div *ngIf="lastName.errors.required">Last name is required.</div>
-    </div>
-
-    <div
-      *ngIf="email.invalid && (email.dirty || email.touched)"
-      class="alert alert-danger"
-    >
-      <div *ngIf="email.errors.required">Email is required.</div>
-      <div *ngIf="email.errors.email">Enter a valid email.</div>
-    </div>
-
-    <div
-      *ngIf="password.invalid && (password.dirty || password.touched)"
-      class="alert alert-danger"
-    >
-      <div *ngIf="password.errors.required">Password is required.</div>
-      <div *ngIf="password.errors.minlength">Password must be at least 6.</div>
-    </div>
-
-    <div *ngIf="serverMessage !== ''" class="alert alert-danger">
-      <div>{{ serverMessage }}</div>
-    </div>
-  </form>
+      <div class="password">
+        <mat-form-field appearance="legacy">
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            formControlName="password"
+            autocomplete="off"
+            [type]="hidePassword ? 'password' : 'text'"
+          />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="hidePassword = !hidePassword"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hidePassword"
+          >
+            <mat-icon>{{
+              hidePassword ? "visibility_off" : "visibility"
+            }}</mat-icon>
+          </button>
+          <mat-error *ngIf="password.invalid">{{
+            getErrorMessage()
+          }}</mat-error>
+        </mat-form-field>
+      </div>
+      <mat-error *ngIf="serverMessage !== ''">{{ serverMessage }}</mat-error>
+      <button
+        type="submit"
+        mat-raised-button
+        color="primary"
+        [disabled]="
+          email.invalid ||
+          password.invalid ||
+          firstName.invalid ||
+          lastName.invalid
+        "
+      >
+        Register
+      </button>
+      <p>Already have an account? <a routerLink="/login">Login</a></p>
+    </form>
+  </mat-card>
 </div>

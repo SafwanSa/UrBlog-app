@@ -11,6 +11,7 @@ export class SubmitIssueComponent implements OnInit {
 
   form: FormGroup;
   isProcessed = false;
+  serverMessage = '';
 
   constructor(
     private fb: FormBuilder,
@@ -32,6 +33,16 @@ export class SubmitIssueComponent implements OnInit {
     return this.form.get('description');
   }
 
+  getErrorMessage(): string {
+    if (this.title.hasError('required')) {
+      return 'You must enter a title';
+    }
+
+    if (this.description.hasError('required')) {
+      return 'You must enter a description';
+    }
+  }
+
   onSubmit(): void {
     this.isProcessed = true;
     const t = new Date();
@@ -45,6 +56,8 @@ export class SubmitIssueComponent implements OnInit {
     )).then(() => {
       this.form.reset();
       this.isProcessed = false;
+    }).catch(err => {
+      this.serverMessage = err;
     });
   }
 }
