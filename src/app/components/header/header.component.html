@@ -1,28 +1,46 @@
-<header>
-  <div class="left-side">
-    <a id="blog-name" href="../index.html">Ur<span>Blog</span></a>
-    <nav>
+<div class="dummy"></div>
+<mat-toolbar color="primary">
+  <a id="blog-name" href="../index.html"><span>Ur</span>Blog</a>
+  <span class="spacer"></span>
+  <nav>
+    <div class="nav-container">
       <a class="nav-option" routerLink="/articles" routerLinkActive="active"
-        >Articles</a
-      >
-      <a class="nav-option" routerLink="/issues" routerLinkActive="active"
-        >Issues</a
-      >
-      <a class="nav-option" routerLink="/submitIssue" routerLinkActive="active"
-        >Submit an Issue</a
-      >
-      <a class="nav-option" routerLink="/users" routerLinkActive="active"
-        >Users</a
-      >
-    </nav>
-  </div>
-  <div class="right-side" *ngIf="!user && !isProcessing">
-    <a id="login" routerLink="/login">Login</a>
-    <a id="register" routerLink="/register">Register</a>
-  </div>
+        >Articles
+        <div class="bar"></div
+      ></a>
+    </div>
 
-  <div class="right-side" *ngIf="user && !isProcessing">
-    <a [routerLink]="['profile', user.uid]">Profile</a>
-    <button class="btn btn-danger" (click)="signOut()">Logout</button>
+    <div class="nav-container">
+      <a class="nav-option" routerLink="/issues" routerLinkActive="active"
+        >Issues
+        <div class="bar"></div
+      ></a>
+    </div>
+
+    <div class="nav-container">
+      <a class="nav-option" routerLink="/submitIssue" routerLinkActive="active"
+        >Submit an issue
+        <div class="bar"></div
+      ></a>
+    </div>
+
+    <div class="nav-container">
+      <a class="nav-option" routerLink="/users" routerLinkActive="active"
+        >Users
+        <div class="bar"></div
+      ></a>
+    </div>
+  </nav>
+
+  <div class="inline">
+    <div class="right-side" *ngIf="!user && !isProcessing">
+      <a id="login" routerLink="/login">Login</a>
+      <a id="register" routerLink="/register">Register</a>
+    </div>
+
+    <div class="right-side" *ngIf="user && !isProcessing">
+      <a [routerLink]="['profile', user.uid]">Profile</a>
+      <button class="btn btn-danger" (click)="signOut()">Logout</button>
+    </div>
   </div>
-</header>
+</mat-toolbar>
