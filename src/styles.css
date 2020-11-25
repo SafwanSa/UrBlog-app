@@ -5,20 +5,20 @@
 @import "~quill/dist/quill.snow.css";
 @import "@angular/material/prebuilt-themes/indigo-pink.css";
 
-body {
-  height: 100vh;
-}
 html,
 body {
   font-family: "Dosis";
-  font-weight: 300;
-}
-
-html,
-body {
+  font-weight: 600;
+  margin: 0;
   height: 100%;
 }
+
 body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  height: 100vh;
+}
+
+* {
+  font-family: "Dosis";
+  font-weight: 500;
+  letter-spacing: 0.1rem;
 }
