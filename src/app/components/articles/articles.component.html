@@ -49,20 +49,29 @@
     </form>
   </div>
 </div> -->
-<div class="search">
-  <form [formGroup]="form">
-    <mat-form-field appearance="legacy">
-      <mat-label>Select</mat-label>
-      <mat-select>
-        <mat-option value="option">Option</mat-option>
-      </mat-select>
-    </mat-form-field>
 
-    <mat-form-field>
-      <input matInput type="search" />
-    </mat-form-field>
-  </form>
-</div>
+<mat-toolbar color="primary">
+  <button class="menu-btn" mat-button [matMenuTriggerFor]="menu">
+    CATEGORIES <mat-icon>keyboard_arrow_down</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>Item 1</button>
+    <button mat-menu-item>Item 2</button>
+  </mat-menu>
+
+  <span class="spacer"></span>
+  <div class="search">
+    <form [formGroup]="form" class="form-inline">
+      <input
+        class="form-control mr-sm-2"
+        type="search"
+        placeholder="Search"
+        aria-label="Search"
+      />
+      <button mat-raised-button color="accent" type="submit">Search</button>
+    </form>
+  </div>
+</mat-toolbar>
 
 <a routerLink="/editor" id="addArticle">Add Article</a>
 <div class="container mt-4">

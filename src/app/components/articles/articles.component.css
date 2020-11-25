@@ -107,17 +107,12 @@
   color: white;
 }
 
-.search {
-  width: 78%;
-  background: lightgray;
-  margin: 0 auto;
+.spacer {
+  flex: 1 1 auto;
 }
 
-.search form {
-  display: flex;
-  justify-content: space-between;
-}
-
-mat-form-field {
-  background: white;
+.menu-btn {
+  height: 100%;
+  border: 1px solid rgb(43, 43, 143);
+  border-radius: 0;
 }
