@@ -80,7 +80,11 @@
       *ngFor="let article of filteredArticles; let i = index"
       class="col-auto mb-3"
     >
-      <app-article [article]="article" [isWriter]="isWriter[i]"></app-article>
+      <app-article
+        [user]="getBlogger(article)"
+        [article]="article"
+        [isWriter]="isWriter[i]"
+      ></app-article>
     </div>
   </div>
 </div>

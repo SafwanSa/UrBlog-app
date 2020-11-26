@@ -3,6 +3,7 @@ import { ArticleService, Article } from '../../services/article.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { FirestoreService } from 'src/app/services/firestore/firestore.service';
+import { User, UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-articles',
@@ -13,22 +14,31 @@ export class ArticlesComponent implements OnInit {
 
   articles: Article[];
   isWriter: boolean[] = [];
+  users: User[] = [];
   form: FormGroup;
   filteredArticles: Article[];
   selectedTag = '';
 
-  constructor(private articleService: ArticleService, private fb: FormBuilder) { }
+  constructor(private articleService: ArticleService, private fb: FormBuilder, private userService: UserService) { }
 
   ngOnInit(): void {
     this.form = this.fb.group({
       searchText: ['']
     });
-    // this.articleService.addDummyData().then();
     this.articleService.getAllArticles().subscribe(articles => {
-      this.articles = articles;
-      this.filteredArticles = this.articles;
-      this.setIsWriter();
+      this.userService.getAll$().subscribe(users => {
+        this.users = users;
+        this.articles = articles;
+        this.filteredArticles = this.articles;
+        this.setIsWriter();
+      });
     });
+  }
+
+  getBlogger(article): User {
+    const blogger = this.users.filter(user => user.uid === article.uid)[0];
+    if (!!blogger) { return blogger; }
+    return null;
   }
 
   get searchText(): any {
@@ -52,7 +62,7 @@ export class ArticlesComponent implements OnInit {
         article.rating,
         article.uid,
         article.tag,
-        ''
+        article.image,
       );
 
       if (this.searchText.value === '') { return true; }

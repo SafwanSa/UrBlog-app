@@ -51,8 +51,12 @@
   <mat-divider></mat-divider>
   <div class="fo-row">
     <p class="blogger-name">
-      <img class="blogger-photo" src="../../../assets/images/b.jpg" alt="" />
-      BY <b>Safwan Saigh</b>
+      <img
+        class="blogger-photo"
+        [src]="!!user.photo ? user.photo : '../../../assets/images/b.jpg'"
+        alt=""
+      />
+      BY <b>{{ user.firstName + " " + user.lastName }}</b>
     </p>
   </div>
 </mat-card>

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { User } from 'src/app/services/user.service';
 import { Article } from '../../../services/article.service';
 
 @Component({
@@ -9,6 +10,7 @@ import { Article } from '../../../services/article.service';
 export class ArticleComponent implements OnInit {
 
   @Input() article: Article;
+  @Input() user: User;
   @Input() isWriter: boolean;
 
   constructor() { }
