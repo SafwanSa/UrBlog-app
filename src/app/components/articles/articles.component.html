@@ -52,11 +52,29 @@
 
 <mat-toolbar color="primary">
   <button class="menu-btn" mat-button [matMenuTriggerFor]="menu">
-    CATEGORIES <mat-icon>keyboard_arrow_down</mat-icon>
+    {{ selectedTag === "" ? "ALL" : selectedTag.toUpperCase() }}
+    <mat-icon>keyboard_arrow_down</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
-    <button mat-menu-item>Item 1</button>
-    <button mat-menu-item>Item 2</button>
+    <button mat-menu-item (click)="selectedTag = ''">All</button>
+
+    <button mat-menu-item (click)="selectedTag = 'Programming Languages'">
+      Programming Languages
+    </button>
+
+    <button mat-menu-item (click)="selectedTag = 'Frameworks'">
+      Frameworks
+    </button>
+
+    <button mat-menu-item (click)="selectedTag = 'Artificial Intelligence'">
+      Artificial Intelligence
+    </button>
+
+    <button mat-menu-item (click)="selectedTag = 'Backend'">Backend</button>
+
+    <button mat-menu-item (click)="selectedTag = 'Frontend'">Frontend</button>
+
+    <button mat-menu-item (click)="selectedTag = 'Other'">Other</button>
   </mat-menu>
 
   <span class="spacer"></span>
@@ -65,10 +83,13 @@
       <input
         class="form-control mr-sm-2"
         type="search"
-        placeholder="Search"
         aria-label="Search"
+        formControlName="searchText"
+        placeholder="e.g. best practices"
       />
-      <button mat-raised-button color="accent" type="submit">Search</button>
+      <button mat-raised-button color="accent" (click)="onSearch()">
+        Search
+      </button>
     </form>
   </div>
 </mat-toolbar>
