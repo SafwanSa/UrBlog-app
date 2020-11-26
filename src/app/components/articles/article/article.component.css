@@ -1,64 +1,13 @@
-/* .myCard {
+.card-container {
   display: flex;
-  position: relative;
-  width: 100%;
-  height: 130px;
-  border: 1px solid gray;
-  border-radius: 5px;
-  margin: 1rem 0rem;
+  margin-left: 20px;
 }
-
-.action-card {
-  display: none;
-}
-
-.myCard .publish-info {
-  display: flex;
-  justify-content: space-between;
-}
-
-.myCard > div > #title {
-  font-size: 24px;
-  color: rgb(7, 111, 209);
-}
-
-.myCard > div {
-  margin: 0 1rem;
-  padding: 1rem 0;
-}
-
-.publish-info {
-  font-size: smaller;
-  color: rgb(197, 196, 196);
-}
-
-.myCard > div > #description {
-  color: gray;
-}
-
-.myCard:hover .action-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  position: absolute;
-  width: 100%;
-  height: 130px;
-  border-radius: 5px;
-  background: rgb(255, 255, 255, 0.8);
-  margin: 0;
-  padding: 0;
-}
-.abtn {
-  width: 20%;
-  height: 45%;
-  left: 80%;
-  animation: mymove 10s infinite;
-} */
 
 mat-card {
   padding: 0;
-  width: 350px;
-  margin: 0.5 0 1rem 0rem;
+  width: 330px;
+  margin: 0.5rem 0 1rem 0rem;
+  position: relative;
 }
 
 img {
@@ -97,4 +46,45 @@ img {
   height: 25px;
   border-radius: 50%;
   margin-right: 0.5rem;
+}
+
+.action-container {
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 50%;
+  background: rgb(255, 255, 255, 0.5);
+  position: absolute;
+  top: 0;
+  transition: all 300ms;
+}
+
+.action-container button {
+  margin: 1rem;
+}
+
+.bk {
+  opacity: 0;
+  background: white;
+  width: 100%;
+  height: 50%;
+  position: absolute;
+  bottom: 0%;
+  transition: all 300ms;
+}
+
+.article-description {
+  font-size: 24px;
+  font-weight: lighter;
+  padding: 1rem;
+  line-height: 2rem;
+}
+
+mat-card:hover .action-container {
+  opacity: 1;
+}
+
+mat-card:hover .bk {
+  opacity: 1;
 }
