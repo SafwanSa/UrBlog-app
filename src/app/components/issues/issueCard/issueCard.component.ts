@@ -16,6 +16,8 @@ export class IssueCardComponent implements OnInit {
   constructor(private issueService: IssueService, private userService: UserService) { }
 
   ngOnInit(): void {
+
+
   }
 
   processStateHandler(): void {

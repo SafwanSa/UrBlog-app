@@ -1,14 +1,13 @@
-<div class="issueCard">
-  <div class="issue-info">
-    <p id="issue-title">{{ issue.title }}</p>
-    <p id="description">{{ issue.description }}</p>
-
-    <p id="date">{{ issue.date }}</p>
-  </div>
+<mat-card>
+  <mat-card-title>{{ issue.title }}</mat-card-title>
+  <mat-divider></mat-divider>
+  <p class="issue-description">{{ issue.description }}</p>
+  <p class="issue-date">{{ issue.date }}</p>
   <button
+    mat-raised-button
+    [color]="issue.isProcessed ? 'warn' : 'primary'"
     (click)="processStateHandler()"
-    [class]="issue.isProcessed ? 'btn btn-primary' : 'btn btn-danger'"
   >
     {{ issue.isProcessed ? "UnProcess" : "Process" }}
   </button>
-</div>
+</mat-card>
