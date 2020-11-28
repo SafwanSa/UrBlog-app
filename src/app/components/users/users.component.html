@@ -1,4 +1,4 @@
-<div class="root-container">
+<!-- <div class="root-container">
   <div class="config-container">
     <p id="title">Users</p>
     <div class="sections">
@@ -16,11 +16,11 @@
       <button (click)="onSearch()">Search</button>
     </form>
   </div>
-
-  <div class="users-container">
-    <app-user-card
-      *ngFor="let user of filteredUsers"
-      [user]="user"
-    ></app-user-card>
+</div> -->
+<div class="container mt-4">
+  <div class="row">
+    <div *ngFor="let user of users" class="col-auto mb-3">
+      <app-user-card [user]="user"></app-user-card>
+    </div>
   </div>
 </div>

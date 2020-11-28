@@ -14,6 +14,8 @@ export class UserCardComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
+    console.log(this.user.photo);
+
   }
 
   blockStateHandler(): void {

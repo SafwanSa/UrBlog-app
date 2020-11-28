@@ -1,51 +1,77 @@
-.root-container {
+mat-card {
+  width: 330px;
+  height: 400px;
+  text-align: center;
+  margin: 1rem 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.photo {
+  width: 150px;
+  border-radius: 50%;
+}
+
+.bottom {
   display: flex;
   justify-content: space-between;
-  justify-items: center;
-  margin: 1rem 0rem;
+  background: rgb(226, 226, 226);
+  align-items: center;
+  padding-top: 1rem;
+  font-size: small;
 }
 
-.block-btn {
-  background: rgb(223, 66, 66);
-  color: white;
-  padding: 1rem;
+.b-section {
+  width: 30%;
 }
 
-.unblock-btn {
-  background: rgb(85, 230, 128);
-  color: white;
-  padding: 1rem;
+.spacer {
+  flex: 1 1 auto;
 }
 
-.myCard {
+.top {
+  margin-bottom: 20%;
+}
+
+.name {
+  font-size: 25px;
+  margin-top: 1rem;
+}
+
+.articles-num-title,
+.user-status-title,
+.last-seen-title {
+  font-weight: bold;
+}
+
+.card-container {
+  display: flex;
+  margin-left: 20px;
+}
+
+.action-card {
+  opacity: 0;
+  background: rgb(255, 255, 255, 0.8);
   width: 100%;
   height: 100%;
+  position: absolute;
+  transition: all 300ms;
   display: flex;
-  border: 1px solid gray;
-  border-radius: 5px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.myCard > div > #name {
-  font-size: 24px;
-  color: rgb(71, 71, 71);
+.action-card p {
+  padding: 0rem 2rem;
 }
 
-.myCard > div > #email {
-  color: rgb(71, 71, 71);
-}
-
-.active {
-  color: rgb(85, 230, 128);
-}
-
-.blocked {
-  color: rgb(223, 66, 66);
-}
-
-.myCard > div {
+.action-card button {
   margin: 0 1rem;
 }
 
-.btn {
-  width: 20%;
+mat-card:hover .action-card {
+  opacity: 1;
 }

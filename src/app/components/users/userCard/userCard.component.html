@@ -1,4 +1,4 @@
-<div class="root-container">
+<!-- <div class="root-container">
   <div class="myCard">
     <img
       src="../../../assets/images/b.jpg"
@@ -23,4 +23,58 @@
   >
     {{ user.isBlocked ? "Unblock" : "Block" }}
   </button>
+</div> -->
+<div class="card-container">
+  <mat-card>
+    <span class="spacer"></span>
+    <div class="top">
+      <img
+        [src]="!!user.photo ? user.photo : '../../../assets/images/b.jpg'"
+        alt=""
+        class="photo"
+      />
+      <p class="name">{{ user.firstName + " " + user.lastName }}</p>
+      <p class="email">{{ user.email }}</p>
+    </div>
+
+    <div class="bottom">
+      <div class="b-section">
+        <p class="articles-num-title">Articles</p>
+        <p class="articles-num">14</p>
+      </div>
+
+      <div class="b-section">
+        <p class="user-status-title">Status</p>
+        <p class="user-status">{{ user.isBlocked ? "Blocked" : "Active" }}</p>
+      </div>
+
+      <div class="b-section">
+        <p class="last-seen-title">Last Seen</p>
+        <p class="last-seen">Nov 4, 2020</p>
+      </div>
+    </div>
+    <div class="action-card">
+      <p>
+        Click <b>More</b> for more details, or block the user if they violates
+        the rules
+      </p>
+      <div class="button-section">
+        <button
+          mat-raised-button
+          [color]="user.isBlocked ? 'warn' : 'primary'"
+          (click)="blockStateHandler()"
+        >
+          {{ user.isBlocked ? "Unblock" : "Block" }}
+        </button>
+
+        <button
+          [routerLink]="['/users', user.uid]"
+          mat-stroked-button
+          color="primary"
+        >
+          More
+        </button>
+      </div>
+    </div>
+  </mat-card>
 </div>
