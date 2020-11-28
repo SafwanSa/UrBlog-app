@@ -1,25 +1,35 @@
-<!-- <div class="root-container">
-  <div class="config-container">
-    <p id="title">Users</p>
-    <div class="sections">
-      <a href="">All</a>
-      <a href="">Staff</a>
-      <a href="">Blogger</a>
-    </div>
+<mat-toolbar color="primary">
+  <button class="menu-btn" mat-button [matMenuTriggerFor]="menu">
+    {{ selectedTag === "" ? "ALL" : selectedTag.toUpperCase() }}
+    <mat-icon>keyboard_arrow_down</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="onSelect('')">All</button>
+    <button mat-menu-item (click)="onSelect('Staff')">Staff</button>
+    <button mat-menu-item (click)="onSelect('Blogger')">Blogger</button>
+    <button mat-menu-item (click)="onSelect('Admin')">Admin</button>
+  </mat-menu>
 
-    <form [formGroup]="form">
+  <span class="spacer"></span>
+  <div class="search">
+    <form [formGroup]="form" class="form-inline">
       <input
+        class="form-control mr-sm-2"
+        type="search"
+        aria-label="Search"
         formControlName="searchText"
-        type="text"
-        placeholder="e.g. Abdulelah Hajjar"
+        placeholder="e.g. best practices"
       />
-      <button (click)="onSearch()">Search</button>
+      <button mat-raised-button color="accent" (click)="onSearch()">
+        Search
+      </button>
     </form>
   </div>
-</div> -->
+</mat-toolbar>
+
 <div class="container mt-4">
   <div class="row">
-    <div *ngFor="let user of users" class="col-auto mb-3">
+    <div *ngFor="let user of filteredUsers" class="col-auto mb-3">
       <app-user-card [user]="user"></app-user-card>
     </div>
   </div>

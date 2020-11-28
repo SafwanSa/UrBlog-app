@@ -1,29 +1,3 @@
-<!-- <div class="root-container">
-  <div class="myCard">
-    <img
-      src="../../../assets/images/b.jpg"
-      width="100px"
-      height="auto"
-      alt=""
-    />
-    <div>
-      <p id="name">
-        {{ user.firstName + " " + user.lastName }} |
-        <span [class]="user.isBlocked ? 'blocked' : 'active'">{{
-          user.isBlocked ? "Blocked" : "Active"
-        }}</span>
-      </p>
-      <p id="email">{{ user.email }}</p>
-      <p id="articles-num">Last seen: <b>1 hour ago (Should be dynamic)</b></p>
-    </div>
-  </div>
-  <button
-    [class]="user.isBlocked ? 'btn btn-primary' : 'btn btn-danger'"
-    (click)="blockStateHandler()"
-  >
-    {{ user.isBlocked ? "Unblock" : "Block" }}
-  </button>
-</div> -->
 <div class="card-container">
   <mat-card>
     <span class="spacer"></span>
@@ -68,7 +42,7 @@
         </button>
 
         <button
-          [routerLink]="['/users', user.uid]"
+          [routerLink]="['/profile', user.uid]"
           mat-stroked-button
           color="primary"
         >
