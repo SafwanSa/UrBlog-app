@@ -87,11 +87,17 @@
     *ngIf="user[0].role === 'blogger' || user[0].role === 'admin'"
   >
     <p id="title">Articles</p>
-    <app-article
-      *ngFor="let article of user[1]"
-      [article]="article"
-      [isWriter]="true"
-    ></app-article>
+    <div class="container mt-4">
+      <div class="row">
+        <div *ngFor="let article of user[1]" class="col-auto mb-3">
+          <app-article
+            [user]="user"
+            [article]="article"
+            [isWriter]="true"
+          ></app-article>
+        </div>
+      </div>
+    </div>
     <p *ngIf="!isProcessing && user[1].length === 0">
       You do not have any articles yet :(
     </p>

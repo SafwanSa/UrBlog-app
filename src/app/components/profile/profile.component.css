@@ -51,9 +51,8 @@ mat-card-content {
   margin: 2rem 0rem;
 }
 
-.articles {
-  width: 50%;
-  margin: 0 auto;
+.articles p {
+  text-align: center;
 }
 
 .img {
