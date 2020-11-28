@@ -17,8 +17,8 @@
       <button mat-raised-button color="accent" (click)="rate()">Rate</button>
     </div>
 
-    <div class="publish-info">
-      <p id="author">Safwan Saigh (This should be dynamic)</p>
+    <div *ngIf="user$ | async as user" class="publish-info">
+      <p id="author">BY {{ user.firstName + " " + user.lastName }}</p>
       <p id="date">{{ article.date }}</p>
     </div>
     <img
