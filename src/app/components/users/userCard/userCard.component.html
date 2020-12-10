@@ -35,7 +35,7 @@
       <div class="button-section">
         <button
           mat-raised-button
-          [color]="user.isBlocked ? 'warn' : 'primary'"
+          [class]="user.isBlocked ? 'secondary' : 'primary'"
           (click)="blockStateHandler()"
         >
           {{ user.isBlocked ? "Unblock" : "Block" }}

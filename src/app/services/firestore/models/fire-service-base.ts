@@ -51,4 +51,43 @@ export abstract class FireServiceBase<T extends FireModelBase> implements IFireS
     }
   }
 
+  getDate(d): string {
+    // tslint:disable-next-line:variable-name
+    const t = new Date(1970, 0, 1);
+    t.setSeconds(d.seconds);
+    // tslint:disable-next-line:variable-name
+    const date_ob = t;
+
+    // adjust 0 before single digit date
+    const date = ('0' + date_ob.getDate()).slice(-2);
+
+    // current month
+    const month = ('0' + (date_ob.getMonth() + 1)).slice(-2);
+
+    // current year
+    const year = date_ob.getFullYear();
+
+    // prints date in YYYY-MM-DD format
+    return (this.getMonth(month) + ' ' + date + ', ' + year);
+    // return (year + '-' + month + '-' + date);
+  }
+
+  private getMonth(m: string): string {
+    switch (m) {
+      case '1': return 'January';
+      case '2': return 'February';
+      case '3': return 'March';
+      case '4': return 'April';
+      case '5': return 'May';
+      case '6': return 'June';
+      case '7': return 'July';
+      case '8': return 'August';
+      case '9': return 'September';
+      case '10': return 'October';
+      case '11': return 'November';
+      case '12': return 'December';
+      default: return 'None';
+    }
+  }
+
 }

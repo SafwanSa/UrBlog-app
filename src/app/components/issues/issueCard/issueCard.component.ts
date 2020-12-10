@@ -35,4 +35,9 @@ export class IssueCardComponent implements OnInit {
         });
     });
   }
+
+  getDate(date): string {
+    return this.issueService.getDate(date);
+  }
+
 }

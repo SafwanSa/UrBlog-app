@@ -2,7 +2,7 @@
   <mat-card-title>{{ issue.title }}</mat-card-title>
   <mat-divider></mat-divider>
   <p class="issue-description">{{ issue.description }}</p>
-  <p class="issue-date">{{ issue.date }}</p>
+  <p class="issue-date">{{ getDate(issue.date) }}</p>
   <button
     mat-raised-button
     [class]="issue.isProcessed ? 'secondary' : 'primary'"

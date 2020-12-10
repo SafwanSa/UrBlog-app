@@ -128,15 +128,15 @@ export class FirestoreService {
     const timestamp = this.timestamp;
     return this.doc(ref).set({
       ...data,
-      updatedAt: timestamp,
-      createdAt: timestamp,
+      updatedAt: new Date(),
+      createdAt: new Date(),
     });
   }
 
   update<T>(ref: DocPredicate<T>, data: any): Promise<void> {
     return this.doc(ref).update({
       ...data,
-      updatedAt: this.timestamp,
+      updatedAt: new Date(),
     });
   }
 
@@ -148,8 +148,8 @@ export class FirestoreService {
     const timestamp = this.timestamp;
     return this.col(ref).add({
       ...data,
-      updatedAt: timestamp,
-      createdAt: timestamp,
+      updatedAt: new Date(),
+      createdAt: new Date(),
     });
   }
 
@@ -239,8 +239,8 @@ export class FirestoreService {
 
     const currentTime = this.timestamp;
 
-    batch.update(itemDoc, { timestamp: currentTime });
-    batch.update(userDoc, { timestamp: currentTime });
+    batch.update(itemDoc, { timestamp: new Date() });
+    batch.update(userDoc, { timestamp: new Date() });
 
     /// commit operations
     return batch.commit();

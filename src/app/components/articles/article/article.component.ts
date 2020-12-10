@@ -1,3 +1,4 @@
+import { ArticleService } from './../../../services/article.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { User } from 'src/app/services/user.service';
 import { Article } from '../../../services/article.service';
@@ -13,8 +14,12 @@ export class ArticleComponent implements OnInit {
   @Input() user: User;
   @Input() isWriter: boolean;
 
-  constructor() { }
+  constructor(private articleService: ArticleService) { }
 
   ngOnInit(): void {
+  }
+
+  getDate(date): string {
+    return this.articleService.getDate(date);
   }
 }

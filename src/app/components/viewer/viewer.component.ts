@@ -55,4 +55,8 @@ export class ViewerComponent implements OnInit {
     this.authService.user$.subscribe(user => { this.isSignedIn = !!user; });
   }
 
+  getDate(date): string {
+    return this.userService.getDate(date);
+  }
+
 }
