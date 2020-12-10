@@ -52,6 +52,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { environment } from '../environments/environment';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -100,7 +101,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AngularFireStorageModule,
     NoopAnimationsModule,
     AngularFireAuthGuardModule,
-    NgbModule
+    NgbModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

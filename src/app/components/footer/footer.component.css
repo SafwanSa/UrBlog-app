@@ -1,0 +1,22 @@
+.social {
+  padding: 20px;
+  font-size: 30px;
+  width: 70px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.link {
+  text-decoration: none;
+  color: white;
+  align-items: center;
+  align-content: center;
+}
+
+.link img {
+  color: #f4634e;
+}
+
+footer {
+  text-align: center;
+}
