@@ -31,8 +31,8 @@
 </div> -->
 
 <div class="root-container">
-  <p class="title">{{ article.title }}</p>
-  <p class="description">{{ article.description }}</p>
+  <p class="title">{{ article?.title }}</p>
+  <p class="description">{{ article?.description }}</p>
 
   <div class="rrow-2">
     <div class="blogger-info">
@@ -40,12 +40,12 @@
         <div class="user">
           <img
             class="blogger-photo"
-            [src]="!!user.photo ? user.photo : '../../../assets/images/b.jpg'"
+            [src]="!!user?.photo ? user?.photo : '../../../assets/images/b.jpg'"
             alt=""
           />
           <div class="user-2">
-            <p id="author">{{ user.firstName + " " + user.lastName }}</p>
-            <p id="date">{{ getDate(article.date) }}</p>
+            <p id="author">{{ user?.firstName + " " + user?.lastName }}</p>
+            <p id="date">{{ getDate(article?.date) }}</p>
           </div>
         </div>
       </div>
@@ -64,9 +64,9 @@
   </div>
   <img
     class="article-image"
-    [src]="article.image ? article.image : '../../../assets/images/css.png'"
+    [src]="article?.image ? article?.image : '../../../assets/images/css.png'"
     alt=""
   />
 
-  <div class="article-content" [innerHTML]="article.content"></div>
+  <div class="article-content" [innerHTML]="article?.content"></div>
 </div>

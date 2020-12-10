@@ -96,7 +96,7 @@ export class EditorComponent implements OnInit {
         this.article ? this.article.rating : 0,
         user.uid,
         this.tag.value,
-        !!this.imageUrl ? this.imageUrl : this.article.image
+        !!this.imageUrl ? this.imageUrl : (!!this.article ? this.article.image : '../../../assets/images/ar.png')
       )).then(_ => {
         this.isProcessing = false;
         this.router.navigateByUrl(`article/${this.article ? this.article.id : `${user.uid}-${t.getTime()}`}`);

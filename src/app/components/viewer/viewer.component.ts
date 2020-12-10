@@ -15,7 +15,7 @@ import { Observable } from 'rxjs';
 })
 export class ViewerComponent implements OnInit {
 
-  article: Article = new Article();
+  article: Article;
   user$: Observable<User>;
   isSignedIn = false;
 
