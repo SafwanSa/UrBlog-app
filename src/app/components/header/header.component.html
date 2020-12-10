@@ -10,7 +10,10 @@
       ></a>
     </div>
 
-    <div class="nav-container">
+    <div
+      *ngIf="user?.role === 'admin' || user?.role === 'staff'"
+      class="nav-container"
+    >
       <a class="nav-option" routerLink="/issues" routerLinkActive="active"
         >Issues
         <div class="bar"></div
@@ -24,7 +27,7 @@
       ></a>
     </div>
 
-    <div class="nav-container">
+    <div *ngIf="user?.role === 'admin'" class="nav-container">
       <a class="nav-option" routerLink="/users" routerLinkActive="active"
         >Users
         <div class="bar"></div

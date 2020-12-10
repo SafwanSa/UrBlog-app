@@ -3,31 +3,31 @@
     <img
       class="f-row"
       [src]="
-        article.image ? article.image : '../../../../assets/images/css.jpg'
+        article?.image ? article?.image : '../../../../assets/images/css.jpg'
       "
       alt=""
     />
-    <p class="s-row">{{ article.title }}</p>
+    <p class="s-row">{{ article?.title }}</p>
     <div class="t-row">
       <p class="article-tag">
-        Added to <span>{{ article.tag }}</span>
+        Added to <span>{{ article?.tag }}</span>
       </p>
-      <p class="date">{{ getDate(article.date) }}</p>
+      <p class="date">{{ getDate(article?.date) }}</p>
     </div>
     <mat-divider></mat-divider>
     <div class="fo-row">
       <p class="blogger-name">
         <img
           class="blogger-photo"
-          [src]="!!user.photo ? user.photo : '../../../assets/images/b.jpg'"
+          [src]="!!user?.photo ? user?.photo : '../../../assets/images/b.jpg'"
           alt=""
         />
-        BY <b>{{ user.firstName + " " + user.lastName }}</b>
+        BY <b>{{ user?.firstName + " " + user?.lastName }}</b>
       </p>
     </div>
 
     <div class="bk">
-      <p class="article-description">{{ article.description }}</p>
+      <p class="article-description">{{ article?.description }}</p>
     </div>
 
     <div class="action-container">
@@ -35,7 +35,7 @@
         mat-raised-button
         class="abtn"
         class="primary"
-        [routerLink]="['/article', article.id]"
+        [routerLink]="['/article', article?.id]"
       >
         Read
       </button>
@@ -44,7 +44,7 @@
         mat-raised-button
         class="abtn"
         class="secondary"
-        [routerLink]="['/editor', article.id]"
+        [routerLink]="['/editor', article?.id]"
       >
         Edit
       </button>
