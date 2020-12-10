@@ -22,7 +22,7 @@
           type="submit"
           *ngIf="isUserController"
           mat-raised-button
-          [color]="isEditingProfile ? 'accent' : 'primary'"
+          [class]="isEditingProfile ? 'secondary' : 'primary'"
           (click)="onSave()"
         >
           {{ isEditingProfile ? "Save" : "Edit Profile" }}

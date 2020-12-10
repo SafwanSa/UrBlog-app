@@ -5,7 +5,7 @@
   <p class="issue-date">{{ issue.date }}</p>
   <button
     mat-raised-button
-    [color]="issue.isProcessed ? 'warn' : 'primary'"
+    [class]="issue.isProcessed ? 'secondary' : 'primary'"
     (click)="processStateHandler()"
   >
     {{ issue.isProcessed ? "UnProcess" : "Process" }}

@@ -1,5 +1,5 @@
 <div class="dummy"></div>
-<mat-toolbar color="primary">
+<mat-toolbar>
   <a id="blog-name" routerLink="/"><span>Ur</span>Blog</a>
   <span class="spacer"></span>
   <nav>
@@ -47,10 +47,16 @@
         [src]="!!user.photo ? user.photo : '../../../assets/images/b.jpg'"
         alt=""
       />
-      <p [routerLink]="['profile', user.uid]" id="user-name">
+      <p
+        style="color: white"
+        [routerLink]="['profile', user.uid]"
+        id="user-name"
+      >
         {{ user.firstName + " " + user.lastName }}
       </p>
     </div>
-    <button mat-raised-button color="accent" (click)="signOut()">Logout</button>
+    <button mat-raised-button class="secondary" (click)="signOut()">
+      Logout
+    </button>
   </div>
 </mat-toolbar>

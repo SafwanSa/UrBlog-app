@@ -96,14 +96,13 @@
   padding: 3px 3px 3px 3px;
 } */
 /* // */
-#addArticle {
+.addArticle {
   position: fixed;
   top: 90%;
   left: 90%;
   padding: 1rem 1rem;
   border-radius: 5px;
   font-size: large;
-  background: rgb(7, 111, 209);
   color: white;
 }
 

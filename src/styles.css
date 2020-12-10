@@ -22,3 +22,13 @@ body {
   font-weight: 500;
   letter-spacing: 0.1rem;
 }
+
+.primary {
+  background: #180a1c;
+  color: white;
+}
+
+.secondary {
+  background: #f4634e;
+  color: white;
+}

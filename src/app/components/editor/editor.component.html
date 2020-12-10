@@ -4,13 +4,18 @@
       <div class="action">
         <button
           mat-raised-button
-          color="primary"
+          style="color: white"
+          [style]="
+            title.invalid || description.invalid || content.invalid
+              ? 'background: #lightgray; '
+              : 'background: #180a1c; '
+          "
           type="submit"
           [disabled]="title.invalid || description.invalid || content.invalid"
         >
           Publish
         </button>
-        <button mat-raised-button color="warn" (click)="delete()">
+        <button mat-raised-button class="secondary" (click)="delete()">
           {{ !!article ? "Delete" : "Discard" }}
         </button>
       </div>
@@ -49,7 +54,7 @@
         <button
           class="upload-btn"
           mat-raised-button
-          color="accent"
+          style="background: #f4634e; color: white"
           type="button"
           (click)="fileInput.click()"
         >

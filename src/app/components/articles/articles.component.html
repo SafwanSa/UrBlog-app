@@ -1,5 +1,5 @@
-<mat-toolbar color="primary">
-  <button class="menu-btn" mat-button [matMenuTriggerFor]="menu">
+<mat-toolbar style="background: #180a1c8d">
+  <button class="" mat-button [matMenuTriggerFor]="menu">
     {{ selectedTag === "" ? "ALL" : selectedTag.toUpperCase() }}
     <mat-icon>keyboard_arrow_down</mat-icon>
   </button>
@@ -35,14 +35,14 @@
         formControlName="searchText"
         placeholder="e.g. best practices"
       />
-      <button mat-raised-button color="accent" (click)="onSearch()">
+      <button mat-raised-button class="secondary" (click)="onSearch()">
         Search
       </button>
     </form>
   </div>
 </mat-toolbar>
 
-<a routerLink="/editor" id="addArticle">Add Article</a>
+<a class="primary addArticle" routerLink="/editor">Add Article</a>
 <div class="container mt-4">
   <div class="row">
     <div
