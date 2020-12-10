@@ -56,10 +56,10 @@ mat-card-content {
 }
 
 .img {
+  object-fit: cover;
   width: 120px;
   height: 120px;
   border-radius: 50%;
-
   margin: 0 auto;
   cursor: pointer;
 }
@@ -76,6 +76,6 @@ mat-card-content {
   cursor: pointer;
 }
 
-.img:hover + .upload-btn {
+/* .img:hover + .upload-btn {
   display: block;
-}
+} */

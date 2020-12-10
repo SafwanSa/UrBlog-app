@@ -59,6 +59,7 @@ nav {
 }
 
 .user-photo {
+  object-fit: cover;
   width: 38px;
   height: 38px;
   border-radius: 50%;

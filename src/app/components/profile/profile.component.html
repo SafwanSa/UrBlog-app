@@ -91,7 +91,7 @@
       <div class="row">
         <div *ngFor="let article of user[1]" class="col-auto mb-3">
           <app-article
-            [user]="user"
+            [user]="user[0]"
             [article]="article"
             [isWriter]="true"
           ></app-article>
