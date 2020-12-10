@@ -1,6 +1,6 @@
 <div class="dummy"></div>
 <mat-toolbar color="primary">
-  <a id="blog-name" href="../index.html"><span>Ur</span>Blog</a>
+  <a id="blog-name" routerLink="/"><span>Ur</span>Blog</a>
   <span class="spacer"></span>
   <nav>
     <div class="nav-container">
@@ -32,15 +32,25 @@
     </div>
   </nav>
 
-  <div class="inline">
-    <div class="right-side" *ngIf="!user && !isProcessing">
-      <a id="login" routerLink="/login">Login</a>
-      <a id="register" routerLink="/register">Register</a>
-    </div>
+  <div class="login" *ngIf="!user && !isProcessing">
+    <button routerLink="/login" mat-stroked-button color="accent">Login</button>
+    <button routerLink="/register" mat-raised-button color="accent">
+      Register
+    </button>
+  </div>
 
-    <div class="right-side" *ngIf="user && !isProcessing">
-      <a [routerLink]="['profile', user.uid]">Profile</a>
-      <button class="btn btn-danger" (click)="signOut()">Logout</button>
+  <div class="right-side" *ngIf="user && !isProcessing">
+    <div>
+      <img
+        class="user-photo"
+        [routerLink]="['profile', user.uid]"
+        [src]="!!user.photo ? user.photo : '../../../assets/images/b.jpg'"
+        alt=""
+      />
+      <p [routerLink]="['profile', user.uid]" id="user-name">
+        {{ user.firstName + " " + user.lastName }}
+      </p>
     </div>
+    <button mat-raised-button color="accent" (click)="signOut()">Logout</button>
   </div>
 </mat-toolbar>

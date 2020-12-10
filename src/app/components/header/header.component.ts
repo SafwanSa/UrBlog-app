@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { of } from 'rxjs/internal/observable/of';
+import { map, switchMap } from 'rxjs/operators';
+import { User, UserService } from 'src/app/services/user.service';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -10,17 +13,34 @@ import { AuthService } from '../../services/auth.service';
 })
 export class HeaderComponent implements OnInit {
 
-  user;
   isProcessing = true;
-
-  constructor(public authService: AuthService, private router: Router) { }
+  user: User;
+  constructor(public authService: AuthService, private router: Router, private userService: UserService) { }
 
   ngOnInit(): void {
-    this.observeAuthUser();
+    this.isProcessing = true;
+    this.user$.subscribe(user => {
+      if (user) {
+        this.user = user;
+      } else {
+        this.user = null;
+      }
+      this.isProcessing = false;
+    });
+
   }
 
-  observeAuthUser(): void {
-    this.authService.user$.subscribe(user => { this.user = user; this.isProcessing = false; });
+  get user$(): Observable<User | null> {
+    return this.authService.user$.pipe(switchMap(authUser => {
+      if (!authUser) { return of(null); }
+      return this.userService.get$(authUser.uid).pipe(map(user => {
+        if (user) {
+          return user;
+        }
+        this.isProcessing = false;
+        return null;
+      }));
+    }));
   }
 
   async signOut(): Promise<void> {

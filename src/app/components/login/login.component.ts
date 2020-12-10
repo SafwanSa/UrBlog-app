@@ -60,8 +60,9 @@ export class LoginComponent implements OnInit {
       this.serverMessage = result.error;
       this.loading = false;
       return;
+    } else {
+      if (result.user) { this.router.navigate(['/profile', result.user.uid]); }
     }
-    if (result.user) { this.router.navigate(['/profile', result.user.uid]); }
     this.loading = false;
   }
 }
