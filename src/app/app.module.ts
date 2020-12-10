@@ -1,3 +1,4 @@
+import { FooterComponent } from './components/footer/footer.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { QuillModule } from 'ngx-quill';
@@ -69,7 +70,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     IssueCardComponent,
     UserCardComponent,
     ViewerComponent,
-    RateComponent
+    RateComponent,
+    FooterComponent
   ],
   imports: [
     MatCardModule,
