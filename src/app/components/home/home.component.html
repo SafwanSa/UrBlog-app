@@ -1,3 +1,38 @@
-<p>
-  home works!
-</p>
+<div class="wlc-background">
+  <mat-toolbar>
+    <div class="nav-logo"><span id="logo">Ur</span>Blog</div>
+    <span class="spacer"></span>
+    <nav>
+      <a routerLink="/" class="nav-option">
+        Home
+        <div class="bar"></div>
+      </a>
+
+      <a routerLink="/articles" class="nav-option">
+        Articles
+        <div class="bar"></div>
+      </a>
+
+      <a routerLink="/submitIssue" class="nav-option">
+        Contact Us
+        <div class="bar"></div>
+      </a>
+
+      <a routerLink="/login" class="nav-option login"> Login </a>
+    </nav>
+  </mat-toolbar>
+  <div class="codes-bg"></div>
+
+  <div class="wlc-statement">
+    <p>
+      <span id="line1">Welcome to <span id="logo">Ur</span>Blog</span>
+    </p>
+    <span id="line2"
+      >Where developers can start their journey in confidence</span
+    >
+  </div>
+
+  <button routerLink="/register" mat-raised-button class="login-button">
+    Join Us
+  </button>
+</div>

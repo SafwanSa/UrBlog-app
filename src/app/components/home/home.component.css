@@ -1,0 +1,140 @@
+nav {
+  display: flex;
+  background-color: transparent;
+  padding-right: 20px;
+}
+
+mat-toolbar {
+  font-family: "Dosis", sans-serif;
+  font-weight: 700;
+  z-index: 1;
+  position: fixed;
+  background-color: transparent;
+  /* top: 0%; */
+}
+
+.wlc-background {
+  background-image: url("../../../assets/images/banner1.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3)),
+    url("../../../assets/images/banner1.jpg");
+
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* background-color: #3e4067; */
+  background-color: #180a1c;
+  /* background */
+  /* height: calc(100vw * 2); */
+  height: 100%;
+  width: 100%;
+}
+
+.codes-bg {
+  background-image: url("../../../assets/Images/codes.svg");
+  opacity: 0.1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 60vw;
+  height: 100vh;
+}
+
+.wlc-statement {
+  position: relative;
+  float: right;
+  top: 200px;
+  /* left: calc(100vw - 500px); */
+  margin-right: 10vw;
+  font-family: "Dosis", sans-serif;
+  font-weight: bold;
+  /* font-size: 100px; */
+}
+
+.wlc-statement #line1 {
+  font-size: 34px;
+}
+
+.wlc-statement #line2 {
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.login-button {
+  position: relative;
+  top: calc(100vh - 150px);
+  left: calc(100vw - 170px);
+  border-radius: 20px;
+  padding: 5px 25px;
+  color: #f8eef7;
+  font-weight: 700;
+  font-size: 20px;
+  background-color: #f53476;
+  font-family: "Dosis", sans-serif;
+}
+
+.wlc-nav {
+  position: absolute;
+  background-color: transparent;
+  display: inline;
+}
+
+.nav-option {
+  margin: 0 1rem;
+  font-size: 15px;
+  color: white;
+  opacity: 0.7;
+  text-decoration: none;
+}
+
+.nav-option:hover .button-bg {
+  opacity: 1;
+}
+
+.nav-option:hover .bar {
+  opacity: 1;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.nav-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.bar {
+  width: 100%;
+  border-bottom: 4px solid white;
+  opacity: 0;
+  transition: all 300ms;
+}
+
+.button-bg {
+  color: white;
+  opacity: 0;
+  transition: all 300ms;
+}
+
+.nav-logo {
+  font-family: "Dosis", sans-serif;
+  font-size: 28px;
+}
+
+#logo {
+  color: #f53476;
+}
+
+.login {
+  border: 1px solid white;
+  padding: 0rem 0.8rem;
+  color: white;
+  border-radius: 5px;
+}
+
+.login:hover {
+  color: #f89d3e;
+  background: white;
+  transition: all 300ms;
+}

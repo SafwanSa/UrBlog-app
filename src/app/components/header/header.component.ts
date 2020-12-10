@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { of } from 'rxjs/internal/observable/of';
 import { map, switchMap } from 'rxjs/operators';
@@ -15,6 +15,7 @@ export class HeaderComponent implements OnInit {
 
   isProcessing = true;
   user: User;
+
   constructor(public authService: AuthService, private router: Router, private userService: UserService) { }
 
   ngOnInit(): void {
