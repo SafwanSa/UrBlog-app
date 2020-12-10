@@ -52,6 +52,9 @@ export class ArticlesComponent implements OnInit {
   }
 
   onSearch(): void {
+    console.log(this.searchText.value);
+    console.log(this.selectedTag, ' tag');
+
     this.filteredArticles = this.articles.filter(article => {
       const articleCopy = new Article(
         article.id,
@@ -70,11 +73,11 @@ export class ArticlesComponent implements OnInit {
       articleCopy.description = articleCopy.description.toLowerCase();
       this.searchText.value = this.searchText.value.toLowerCase();
       if (this.selectedTag === '') {
-        return (articleCopy.description.split(' ').includes(this.searchText.value) ||
-          articleCopy.title.split(' ').includes(this.searchText.value));
+        return (articleCopy.title.startsWith(this.searchText.value) || (articleCopy.description.startsWith(this.searchText.value)));
       } else {
-        return (articleCopy.description.split(' ').includes(this.searchText.value) ||
-          articleCopy.title.split(' ').includes(this.searchText.value)) && (this.selectedTag === articleCopy.tag);
+        return ((articleCopy.title.startsWith(this.searchText.value) ||
+          (articleCopy.description.startsWith(this.searchText.value)))) &&
+          (this.selectedTag === articleCopy.tag);
       }
     }
     );
