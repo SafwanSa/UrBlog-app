@@ -1,14 +1,7 @@
-.root-container {
-  height: 100%;
-  width: 50%;
-  margin: 0 auto;
-  margin-top: 8rem;
-}
-
+/* 
 .info #title {
   font-size: 45px;
   text-align: left;
-  /* font-family: "Times New Roman", Times, serif; */
   color: rgb(71, 71, 71);
 }
 
@@ -39,7 +32,6 @@
 #content {
   font-size: 20px;
   color: rgb(71, 71, 71);
-  /* font-family: sans-serif; */
   margin-top: 4rem;
   font-stretch: expanded;
   line-height: 2.3rem;
@@ -56,4 +48,80 @@
 }
 .filled {
   color: #f8da43;
+} */
+.root-container {
+  height: 100%;
+  width: 70%;
+  margin: 0 auto;
+  /* background-color: red; */
+  margin-top: 2rem;
+}
+
+.title {
+  font-size: 48px;
+  line-height: 60px;
+}
+
+.description {
+  font-size: 22px;
+  line-height: 28px;
+  color: rgba(117, 117, 117, 1);
+}
+
+.rrow-2 {
+  display: flex;
+  justify-content: space-between;
+  margin: 3rem 0;
+  padding: 1rem;
+}
+
+.blogger-photo {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+}
+
+.user {
+  display: flex;
+  /* background-color: gray; */
+}
+
+.user-2 {
+  height: 100%;
+  font-size: 14px;
+  /* line-height: 13px; */
+  margin: auto 0;
+}
+
+.user-2 p {
+  /* background-color: red; */
+  margin: auto 0;
+}
+
+.article-image {
+  width: 100%;
+  height: auto;
+}
+
+.rating {
+  width: 100%;
+  margin: 1rem 0;
+  display: flex;
+  justify-items: center;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.star {
+  font-size: 1.5rem;
+  color: #c5c5c5;
+}
+
+.filled {
+  color: #f8da43;
+}
+
+.article-content {
+  margin: 2rem 1rem;
 }

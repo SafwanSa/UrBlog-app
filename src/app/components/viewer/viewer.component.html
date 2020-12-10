@@ -1,4 +1,4 @@
-<div class="root-container">
+<!-- <div class="root-container">
   <div class="info">
     <p id="title">{{ article.title }}</p>
     <p id="description">{{ article.description }}</p>
@@ -27,5 +27,46 @@
     />
   </div>
 
-  <p id="content">{{ article.content }}</p>
+  <div [innerHTML]="article.content"></div>
+</div> -->
+
+<div class="root-container">
+  <p class="title">{{ article.title }}</p>
+  <p class="description">{{ article.description }}</p>
+
+  <div class="rrow-2">
+    <div class="blogger-info">
+      <div *ngIf="user$ | async as user" class="publish-info">
+        <div class="user">
+          <img
+            class="blogger-photo"
+            [src]="!!user.photo ? user.photo : '../../../assets/images/b.jpg'"
+            alt=""
+          />
+          <div class="user-2">
+            <p id="author">{{ user.firstName + " " + user.lastName }}</p>
+            <p id="date">{{ article.date }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="rating">
+    <ngb-rating max="5" [(rate)]="article.rating" [readonly]="true">
+      <ng-template let-fill="fill" let-index="index">
+        <span class="star" [class.filled]="fill === 100" [class.bad]="index < 3"
+          >&#9733;</span
+        >
+      </ng-template>
+    </ngb-rating>
+
+    <button mat-raised-button color="accent" (click)="rate()">Rate</button>
+  </div>
+  <img
+    class="article-image"
+    [src]="article.image ? article.image : '../../../assets/images/css.png'"
+    alt=""
+  />
+
+  <div class="article-content" [innerHTML]="article.content"></div>
 </div>
