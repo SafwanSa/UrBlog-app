@@ -14,7 +14,7 @@
     <div class="bottom">
       <div class="b-section">
         <p class="articles-num-title">Articles</p>
-        <p class="articles-num">14</p>
+        <p class="articles-num">{{ numOfArticles }}</p>
       </div>
 
       <div class="b-section">
@@ -24,7 +24,7 @@
 
       <div class="b-section">
         <p class="last-seen-title">Last Seen</p>
-        <p class="last-seen">Nov 4, 2020</p>
+        <p class="last-seen">{{ getDate(lastSeen) }}</p>
       </div>
     </div>
     <div class="action-card">

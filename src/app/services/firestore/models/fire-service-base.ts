@@ -51,7 +51,7 @@ export abstract class FireServiceBase<T extends FireModelBase> implements IFireS
     }
   }
 
-  getDate(d): string {
+  getDate(d, short: boolean = false): string {
     // tslint:disable-next-line:variable-name
     const t = new Date(1970, 0, 1);
     t.setSeconds(d.seconds);
@@ -68,7 +68,8 @@ export abstract class FireServiceBase<T extends FireModelBase> implements IFireS
     const year = date_ob.getFullYear();
 
     // prints date in YYYY-MM-DD format
-    return (this.getMonth(month) + ' ' + date + ', ' + year);
+
+    return ((short ? this.getMonth(month).slice(0, 3) : this.getMonth(month)) + ' ' + date + ', ' + year);
     // return (year + '-' + month + '-' + date);
   }
 
