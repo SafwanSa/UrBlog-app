@@ -5,6 +5,26 @@
 }
 
 @media only screen and (max-width: 600px) {
+  .mobile {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+
+  .col-auto {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+
+  .mb-3 {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+
   .search-user-bar {
     background: #180a1c8d;
     display: flex;
