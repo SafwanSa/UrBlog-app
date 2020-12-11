@@ -1,11 +1,17 @@
+@media only screen and (max-width: 400px) {
+  .article-detials {
+    display: flex;
+    flex-direction: column;
+  }
+}
 .card-container {
   display: flex;
-  margin-left: 20px;
 }
 
 mat-card {
   padding: 0;
   width: 330px;
+  max-width: 100%;
   margin: 0.5rem 0 1rem 0rem;
   position: relative;
 }
@@ -13,6 +19,7 @@ mat-card {
 img {
   object-fit: cover;
   width: 100%;
+  max-width: clac(100vw - 20px);
   height: 200px;
   border-radius: 5px 5px 0 0;
 }
@@ -21,6 +28,7 @@ img {
   font-size: 24px;
   font-weight: lighter;
   padding: 1rem;
+  max-width: 100%;
   line-height: 2rem;
 }
 
@@ -50,6 +58,7 @@ img {
 
 .action-container {
   opacity: 0;
+  max-width: 100%;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -75,6 +84,7 @@ img {
 }
 
 .article-description {
+  max-width: 100%;
   font-size: 24px;
   font-weight: lighter;
   padding: 1rem;

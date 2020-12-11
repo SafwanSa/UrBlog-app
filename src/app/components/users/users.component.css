@@ -1,3 +1,26 @@
+@media only screen and (min-width: 601px) {
+  .search-user-bar {
+    background: #180a1c8d;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .search-user-bar {
+    background: #180a1c8d;
+    display: flex;
+    flex-direction: column;
+    height: 160px;
+    align-items: stretch;
+    padding: 1rem;
+  }
+  .search-field {
+    margin: 10px 0;
+  }
+  .search-button {
+    width: 100%;
+  }
+}
+
 .spacer {
   flex: 1 1 auto;
 }

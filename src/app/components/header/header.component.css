@@ -1,9 +1,37 @@
+nav {
+  background: #180a1c;
+  box-shadow: 0px 0px 7px 0.6px black;
+  z-index: 1;
+  width: 100%;
+  top: 0%;
+}
+.nav-item {
+  display: flex;
+  align-items: center;
+  margin: 5px 0.5rem;
+}
 .nav-option {
-  margin: 0 1rem;
+  align-items: center;
   font-size: small;
   color: white;
   opacity: 0.7;
   text-decoration: none;
+}
+.nav-option:hover .bar {
+  opacity: 1;
+}
+
+.bar {
+  width: 100%;
+  border-bottom: 2px solid white;
+  width: calc(100% - 1rem);
+  transform: translate(1rem, 0);
+  align-items: center;
+  opacity: 0;
+  transition: all 300ms;
+}
+.nav-container {
+  width: 100%;
 }
 
 .active {
@@ -20,42 +48,13 @@
   height: 64px;
 }
 
-mat-toolbar {
-  box-shadow: 0px 0px 7px 0.6px black;
-  z-index: 1;
-  position: fixed;
-  top: 0%;
-}
-
-.nav-container {
-  display: flex;
-  flex-direction: column;
-}
-
-.bar {
-  width: 100%;
-  border-bottom: 2px solid white;
-  opacity: 0;
-  transition: all 300ms;
-}
-
-.nav-option:hover .bar {
-  opacity: 1;
-}
-
 #blog-name {
   color: white;
+  font-size: large;
 }
 
 #blog-name span {
   color: #f4634e;
-}
-
-nav {
-  display: flex;
-  justify-items: center;
-  justify-content: end;
-  width: 100%;
 }
 
 .user-photo {
@@ -69,30 +68,25 @@ nav {
 
 .right-side {
   display: flex;
-  /* height: 100%; */
-  /* width: 30%; */
-  justify-content: space-between;
+  height: 100%;
+  /* justify-content: space-between; */
 }
 
 .right-side div {
   display: flex;
-  /* height: 100%; */
+  height: 100%;
   align-items: center;
   justify-items: center;
 }
 
-/* .right-side button {
+.right-side button {
   border-radius: 0;
   font-size: 20px;
-} */
+}
 
 #user-name {
   font-size: 16px;
   cursor: pointer;
   margin: auto 0;
   margin-right: 1rem;
-}
-
-mat-toolbar {
-  background: #180a1c;
 }

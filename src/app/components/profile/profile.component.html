@@ -1,84 +1,86 @@
 <div *ngIf="userAndArticles$ | async as user" class="root-container">
   <mat-card>
-    <mat-card-content>
-      <div class="left-side">
-        <img
-          class="img"
-          [src]="!!!imageUrl ? '../../../assets/images/b.jpg' : imageUrl"
-          alt=""
-        />
+    <mat-card-content class="user-details">
+      <div class="user-container">
+        <div class="user-image-container">
+          <img
+            class="user-img"
+            [src]="!!!imageUrl ? '../../../assets/images/b.jpg' : imageUrl"
+            alt=""
+          />
 
-        <img class="upload-btn" (click)="fileInput.click()" />
-        <input
-          [disabled]="!isEditingProfile"
-          #fileInput
-          type="file"
-          (change)="onFileSelected($event)"
-          style="display: none"
-          name="image"
-        />
+          <img class="upload-btn" (click)="fileInput.click()" />
+          <input
+            [disabled]="!isEditingProfile"
+            #fileInput
+            type="file"
+            (change)="onFileSelected($event)"
+            style="display: none"
+            name="image"
+          />
+        </div>
 
-        <button
-          type="submit"
-          *ngIf="isUserController"
-          mat-raised-button
-          [class]="isEditingProfile ? 'secondary' : 'primary'"
-          (click)="onSave()"
-        >
-          {{ isEditingProfile ? "Save" : "Edit Profile" }}
-        </button>
+        <form class="user-info-container" [formGroup]="form">
+          <div class="firstName">
+            <mat-form-field
+              [appearance]="isEditingProfile ? 'fill' : 'legacy'"
+              color="primary"
+            >
+              <mat-label>First Name</mat-label>
+              <input
+                [readonly]="!isEditingProfile"
+                matInput
+                formControlName="firstName"
+                autocomplete="off"
+              />
+              <mat-error *ngIf="firstName.invalid">{{
+                getErrorMessage()
+              }}</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="lastName">
+            <mat-form-field
+              [appearance]="isEditingProfile ? 'fill' : 'legacy'"
+              color="primary"
+            >
+              <mat-label>Last Name</mat-label>
+              <input
+                [readonly]="!isEditingProfile"
+                matInput
+                formControlName="lastName"
+                autocomplete="off"
+              />
+              <mat-error *ngIf="lastName.invalid">{{
+                getErrorMessage()
+              }}</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="email">
+            <mat-form-field appearance="legacy" color="primary">
+              <mat-label>Email</mat-label>
+              <input
+                [readonly]="true"
+                type="email"
+                matInput
+                formControlName="email"
+                autocomplete="off"
+              />
+            </mat-form-field>
+          </div>
+        </form>
       </div>
-
-      <form class="right-side" [formGroup]="form">
-        <div class="firstName">
-          <mat-form-field
-            [appearance]="isEditingProfile ? 'fill' : 'legacy'"
-            color="primary"
-          >
-            <mat-label>First Name</mat-label>
-            <input
-              [readonly]="!isEditingProfile"
-              matInput
-              formControlName="firstName"
-              autocomplete="off"
-            />
-            <mat-error *ngIf="firstName.invalid">{{
-              getErrorMessage()
-            }}</mat-error>
-          </mat-form-field>
-        </div>
-
-        <div class="lastName">
-          <mat-form-field
-            [appearance]="isEditingProfile ? 'fill' : 'legacy'"
-            color="primary"
-          >
-            <mat-label>Last Name</mat-label>
-            <input
-              [readonly]="!isEditingProfile"
-              matInput
-              formControlName="lastName"
-              autocomplete="off"
-            />
-            <mat-error *ngIf="lastName.invalid">{{
-              getErrorMessage()
-            }}</mat-error>
-          </mat-form-field>
-        </div>
-
-        <div class="email">
-          <mat-form-field appearance="legacy" color="primary">
-            <mat-label>Email</mat-label>
-            <input
-              [readonly]="true"
-              type="email"
-              matInput
-              formControlName="email"
-              autocomplete="off"
-            />
-          </mat-form-field>
-        </div>
-      </form>
+      <button
+        class="edit-profile-button"
+        type="submit"
+        *ngIf="isUserController"
+        mat-raised-button
+        [class]="isEditingProfile ? 'secondary' : 'primary'"
+        (click)="onSave()"
+      >
+        {{ isEditingProfile ? "Save" : "Edit Profile" }}
+      </button>
     </mat-card-content>
   </mat-card>
 

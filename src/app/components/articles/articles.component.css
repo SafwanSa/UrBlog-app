@@ -96,26 +96,43 @@
   padding: 3px 3px 3px 3px;
 } */
 /* // */
-.addArticle {
-  position: fixed;
-  top: 90vh;
-  text-decoration: none;
-  left: calc(100vw - 200px);
-  z-index: 1;
-  padding: 1rem 1rem;
-  border-radius: 5px;
-  /* font-size: large; */
-  font-size: 20px;
-  color: white;
-}
+@media only screen and (max-width: 600px) {
+  .search-articles-bar {
+    background: #180a1c8d;
+    display: flex;
+    flex-direction: column;
+    height: 160px;
+    align-items: stretch;
+    padding: 1rem;
+  }
+  .search-field {
+    margin: 10px 0;
+  }
+  .search-button {
+    width: 100%;
+  }
+  .addArticle {
+    position: fixed;
+    top: 90vh;
+    text-decoration: none;
+    left: 90vw;
+    width: fit-content;
+    transform: translate(-100%, 00);
+    z-index: 1;
+    max-width: 100%;
+    padding: 0.75rem 0.75rem;
+    border-radius: 5px;
+    font-size: 16px;
+    color: white;
+  }
 
-.addArticle:hover {
-  background: #f4634e;
-  color: white;
-  transition: all 300ms;
-}
+  .addArticle:hover {
+    background: #f4634e;
+    color: white;
+    transition: all 300ms;
+  }
 
-/* .addArticle {
+  /* .addArticle {
   position: fixed;
   top: calc(100vh - 150px);
   left: calc(100vw - 200px);
@@ -127,14 +144,61 @@
   z-index: 1;
 } */
 
-.spacer {
-  flex: 1 1 auto;
+  .spacer {
+    flex: 1 1 auto;
+  }
+
+  .menu-btn {
+    height: 100%;
+    border: 1px solid rgb(43, 43, 143);
+    border-radius: 0;
+  }
 }
 
-.menu-btn {
-  height: 100%;
-  border: 1px solid rgb(43, 43, 143);
-  border-radius: 0;
+@media only screen and (min-width: 601px) {
+  .search-articles-bar {
+    background: #180a1c8d;
+  }
+  .addArticle {
+    position: fixed;
+    top: 90vh;
+    text-decoration: none;
+    left: calc(100vw - 200px);
+    z-index: 1;
+    padding: 1rem 1rem;
+    border-radius: 5px;
+    /* font-size: large; */
+    font-size: 20px;
+    color: white;
+  }
+
+  .addArticle:hover {
+    background: #f4634e;
+    color: white;
+    transition: all 300ms;
+  }
+
+  /* .addArticle {
+  position: fixed;
+  top: calc(100vh - 150px);
+  left: calc(100vw - 200px);
+  border-radius: 5px;
+  padding: 5px 25px;
+  color: #f8eef7;
+  font-weight: 700;
+  font-size: 20px;
+  z-index: 1;
+} */
+
+  .spacer {
+    flex: 1 1 auto;
+  }
+
+  .menu-btn {
+    height: 100%;
+    border: 1px solid rgb(43, 43, 143);
+    border-radius: 0;
+  }
 }
 
 #search {
