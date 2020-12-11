@@ -1,4 +1,4 @@
-<div class="dummy"></div>
+<!-- <div class="dummy"></div>
 <mat-toolbar>
   <a id="blog-name" routerLink="/"><span>Ur</span>Blog</a>
   <span class="spacer"></span>
@@ -62,4 +62,112 @@
       Logout
     </button>
   </div>
-</mat-toolbar>
+</mat-toolbar> -->
+
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <a id="blog-name" routerLink="/"><span>Ur</span>Blog</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+    (click)="toggleCollapsed()"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div
+    [ngClass]="{ collapse: collapsed, 'navbar-collapse': true }"
+    id="navbarSupportedContent"
+  >
+    <ul class="navbar-nav justify-content-end nav-container">
+      <li class="nav-item">
+        <a class="nav-option" routerLink="/articles" routerLinkActive="active"
+          >Articles
+          <div class="bar"></div
+        ></a>
+      </li>
+      <!--Admin Only -->
+      <li
+        class="nav-item"
+        *ngIf="user?.role === 'admin' || user?.role === 'staff'"
+      >
+        <a class="nav-option" routerLink="/issues" routerLinkActive="active"
+          >Issues
+          <div class="bar"></div
+        ></a>
+      </li>
+
+      <li class="nav-item">
+        <a
+          class="nav-option"
+          routerLink="/submitIssue"
+          routerLinkActive="active"
+          >Submit an issue
+          <div class="bar"></div
+        ></a>
+      </li>
+      <li class="nav-item" *ngIf="user?.role === 'admin'">
+        <a class="nav-option" routerLink="/users" routerLinkActive="active"
+          >Users
+          <div class="bar"></div
+        ></a>
+      </li>
+
+      <li class="nav-item">
+        <div class="login" *ngIf="!user">
+          <button routerLink="/login" mat-stroked-button color="warn">
+            Login
+          </button>
+          <button routerLink="/register" mat-raised-button class="secondary">
+            Register
+          </button>
+        </div>
+      </li>
+
+      <div class="right-side" *ngIf="user && !isProcessing">
+        <div>
+          <img
+            class="user-photo"
+            [routerLink]="['profile', user.uid]"
+            [src]="!!user.photo ? user.photo : '../../../assets/images/b.jpg'"
+            alt=""
+          />
+          <p
+            style="color: white"
+            [routerLink]="['profile', user.uid]"
+            id="user-name"
+          >
+            {{ user.firstName + " " + user.lastName }}
+          </p>
+        </div>
+        <button mat-raised-button class="secondary" (click)="signOut()">
+          Logout
+        </button>
+      </div>
+      <!-- <li class="nav-item profile-options" *ngIf="user && !isProcessing">
+        <div>
+          <img
+            class="user-photo"
+            [routerLink]="['profile', user.uid]"
+            [src]="!!user.photo ? user.photo : '../../../assets/images/b.jpg'"
+            alt=""
+          />
+          <p
+            style="color: white"
+            [routerLink]="['profile', user.uid]"
+            id="user-name"
+          >
+            {{ user.firstName + " " + user.lastName }}
+          </p>
+        </div>
+        <button mat-raised-button class="secondary" (click)="signOut()">
+          Logout
+        </button>
+      </li> -->
+    </ul>
+  </div>
+</nav>
