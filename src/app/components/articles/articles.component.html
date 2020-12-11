@@ -1,4 +1,4 @@
-<mat-toolbar style="background: #180a1c8d">
+<mat-toolbar class="search-articles-bar">
   <button class="" mat-button [matMenuTriggerFor]="menu">
     {{ selectedTag === "" ? "ALL" : selectedTag.toUpperCase() }}
     <mat-icon>keyboard_arrow_down</mat-icon>
@@ -29,13 +29,17 @@
   <div class="search">
     <form [formGroup]="form" class="form-inline">
       <input
-        class="form-control mr-sm-2"
+        class="form-control mr-sm-2 search-field"
         type="search"
         aria-label="Search"
         formControlName="searchText"
         placeholder="e.g. best practices"
       />
-      <button mat-raised-button class="secondary" (click)="onSearch()">
+      <button
+        mat-raised-button
+        class="secondary search-button"
+        (click)="onSearch()"
+      >
         Search
       </button>
     </form>
