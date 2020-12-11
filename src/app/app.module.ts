@@ -104,7 +104,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     AngularFireAuthGuardModule,
     NgbModule,
     FontAwesomeModule,
-    FormsModule
+    FormsModule,
+    NoopAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
