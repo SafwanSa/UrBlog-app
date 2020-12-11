@@ -28,7 +28,7 @@ import { EditorComponent } from './components/editor/editor.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { IssueCardComponent } from './components/issues/issueCard/issueCard.component';
 import { UserCardComponent } from './components/users/userCard/userCard.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ViewerComponent } from './components/viewer/viewer.component';
 import { RateComponent } from './components/viewer/rate/rate.component';
 
@@ -48,6 +48,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 // Get firebase credentials
 import { environment } from '../environments/environment';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -94,15 +95,16 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     MatTabsModule,
     MatToolbarModule,
     MatMenuModule,
+    MatProgressSpinnerModule,
     // 3. Initialize
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule, // firestore
     AngularFireAuthModule, // auth
     AngularFireStorageModule,
-    NoopAnimationsModule,
     AngularFireAuthGuardModule,
     NgbModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
