@@ -3,12 +3,12 @@
     display: flex;
     background-color: transparent;
     padding-right: 20px;
+    z-index: 1;
   }
 
   mat-toolbar {
     font-family: "Dosis", sans-serif;
     font-weight: 700;
-    z-index: 1;
     background-color: transparent;
     display: flex;
     flex-direction: column;
@@ -16,7 +16,6 @@
   }
 
   .wlc-background {
-    background-image: url("../../../assets/images/banner1.jpg");
     background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3)),
       url("../../../assets/images/banner1.jpg");
     background-size: cover;
@@ -134,8 +133,8 @@
   }
 
   .login-button {
-    position: fixed;
-    bottom: 20%;
+    position: absolute;
+    top: 70%;
     left: 50%;
     transform: translate(-50%, 0);
     margin-bottom: 1rem;
