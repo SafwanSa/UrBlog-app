@@ -5,7 +5,9 @@
   height: 84%;
 }
 .card {
-  width: 40%;
+  margin-top: 40px;
+  width: 60%;
+  max-width: 500px;
   padding: 2rem;
   text-align: center;
 }
