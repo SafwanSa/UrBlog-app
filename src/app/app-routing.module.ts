@@ -1,3 +1,4 @@
+import { BlockedGuard } from './guards/blocked.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ArticlesComponent } from './components/articles/articles.component';
@@ -39,7 +40,7 @@ const routes: Routes = [
 
   {
     path: 'profile/:id', component: ProfileComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, BlockedGuard],
   },
 
   { path: 'submitIssue', component: SubmitIssueComponent },
