@@ -24,8 +24,6 @@ nav {
 .bar {
   width: 100%;
   border-bottom: 2px solid white;
-  width: calc(100% - 1rem);
-  transform: translate(1rem, 0);
   align-items: center;
   opacity: 0;
   transition: all 300ms;
