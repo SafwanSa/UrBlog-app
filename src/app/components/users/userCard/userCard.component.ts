@@ -7,24 +7,31 @@ import { map } from 'rxjs/operators';
 @Component({
   selector: 'app-user-card',
   templateUrl: './userCard.component.html',
-  styleUrls: ['./userCard.component.css']
+  styleUrls: ['./userCard.component.css'],
 })
 export class UserCardComponent implements OnInit {
-
   @Input() user: User;
   isProcessed = false;
   numOfArticles = 0;
   lastSeen = new Date();
 
-  constructor(private userService: UserService, private articleService: ArticleService) { }
+  constructor(
+    private userService: UserService,
+    private articleService: ArticleService
+  ) {}
 
   ngOnInit(): void {
-    this.articleService.getAll$()
-      .pipe(map(articles => articles.filter(article => article.uid === `${this.user.uid}`)))
-      .subscribe(filteredArticles => {
+    this.articleService
+      .getAll$()
+      .pipe(
+        map((articles) =>
+          articles.filter((article) => article.uid === `${this.user.uid}`)
+        )
+      )
+      .subscribe((filteredArticles) => {
         this.numOfArticles = filteredArticles.length;
         let last = filteredArticles[0];
-        filteredArticles.forEach(article2 => {
+        filteredArticles.forEach((article2) => {
           if (last.date < article2.date && last.id !== article2.id) {
             last = article2;
           }
@@ -41,6 +48,11 @@ export class UserCardComponent implements OnInit {
     });
   }
   getDate(date): string {
-    return this.userService.getDate(date, true);
+    var date1 = this.userService.getDate(date, true);
+    if (date1.includes('Non')) {
+      return date.toString().slice(4, 15);
+    } else {
+      return date1;
+    }
   }
 }
