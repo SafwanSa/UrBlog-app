@@ -4,12 +4,13 @@
       <div class="user-container">
         <div class="user-image-container">
           <img
+            (click)="fileInput.click()"
             class="user-img"
             [src]="!!!imageUrl ? '../../../assets/images/b.jpg' : imageUrl"
             alt=""
           />
 
-          <img class="upload-btn" (click)="fileInput.click()" />
+          <!-- <img class="upload-btn" (click)="fileInput.click()" /> -->
           <input
             [disabled]="!isEditingProfile"
             #fileInput
