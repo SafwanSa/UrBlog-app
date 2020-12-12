@@ -29,12 +29,12 @@ const routes: Routes = [
 
   {
     path: 'editor', component: EditorComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, BlockedGuard],
   },
 
   {
     path: 'editor/:id', component: EditorComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, BlockedGuard],
   },
 
 
